@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.mypage.model.mapper.MypageMapper">
+
+	<sql id="contentsListSql">
+		C.C_NO,
+		C.C_TITLE,
+		C.C_TYPE,
+		C.C_GENRE,
+		C.C_YEAR,
+		C.C_NATION,
+		C.C_AGE,
+		C.C_INFO,
+		C.C_SYNOP,
+		C.C_OBIMG,
+		C.C_BIMG,
+		C.C_OPIMG,
+		C.C_PIMG,
+		C.C_VIDEO,
+		C.C_DATE,
+		C.C_LEFTCOLOR,
+		C.C_RIGHTCOLOR
+	</sql>
+	
+	<sql id="boardSql">
+		SELECT
+		    B.B_NO, 
+		    M.M_NO, 
+		    B.B_TITLE, 
+		    B.B_TYPE, 
+		    B.B_DATE, 
+		    B.B_CONTENT, 
+		    B.B_ORIGINAL_FILENAME, 
+		    B.B_VIEW, 
+		    B.B_STATUS, 
+		    B.B_ANSWER_STATUS, 
+		    M.M_ID
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_STATUS = 'Y'
+	</sql>	 
+	
+	<resultMap type="Contents" id="contentsListResultMap">
+		<id property="c_no" column="C_NO"/>
+		<result property="c_title" column="C_TITLE"/>
+		<result property="c_type" column="C_TYPE"/>
+		<result property="c_genre" column="C_GENRE"/>
+		<result property="c_year" column="C_YEAR"/>
+		<result property="c_nation" column="C_NATION"/>
+		<result property="c_age" column="C_AGE"/>
+		<result property="c_info" column="C_INFO"/>
+		<result property="c_synop" column="C_SYNOP"/>
+		<result property="c_obimg" column="C_OBIMG"/>
+		<result property="c_bimg" column="C_BIMG"/>
+		<result property="c_opimg" column="C_OPIMG"/>
+		<result property="c_pimg" column="C_PIMG"/>
+		<result property="c_video" column="C_VIDEO"/>
+		<result property="c_date" column="C_DATE"/>
+		<result property="c_status" column="C_STATUS"/>	
+		<result property="rate_star" column="ROUND(AVG(RATE_STAR),1)"/>
+	</resultMap>
+
+	<resultMap type="Board" id="BoardResultMap">
+		<id property="bno" column="B_NO"/>
+		<result property="mno" column="M_NO"/>
+		<result property="btitle" column="B_TITLE"/>
+		<result property="btype" column="B_TYPE"/>
+		<result property="bcreatedate" column="B_DATE"/>
+		<result property="bcontent" column="B_CONTENT"/>
+		<result property="boriginalfilename" column="B_ORIGINAL_FILENAME"/>
+		<result property="bview" column="B_VIEW"/>
+		<result property="banswerstatus" column="B_ANSWER_STATUS"/>
+		<result property="bstatus" column="B_STATUS"/>
+		<result property="mid" column="M_ID"/>
+	</resultMap>
+	
+	<resultMap type="Order" id="OrderResultMap">
+		<id property="mno" column="M_NO"/>
+		<id property="payno" column="PAY_NO"/>
+		<result property="odate" column="O_DATE"/>
+		<result property="oadress" column="O_ADRESS"/>
+		<result property="omessage" column="O_MESSAGE"/>
+		<result property="oname" column="O_NAME"/>
+		<result property="ophone" column="O_PHONE"/>
+		<result property="opostnum" column="O_POSTNUM"/>
+		<result property="oadressdetail" column="O_ADRESSDETAIL"/>
+		<collection property="productList" javaType="arraylist" resultMap="ProductResultMap"/>
+		<collection property="pay" resultMap="PayResultMap"/>
+	</resultMap>
+	
+	<resultMap type="Product" id="ProductResultMap">
+		<id property="pno" column="P_NO"/>
+		<result property="pname" column="P_NAME"/>
+		<result property="pprice" column="P_PRICE"/>
+		<result property="porderqtt" column="O_QTT"/>
+		<result property="prenamefile" column="P_RENAMEFILE"/>
+	</resultMap>
+	
+	<resultMap type="Pay" id="PayResultMap">
+		<result property="paymerchant" column="PAY_MERCHANT"/>
+		<result property="paymethod" column="PAY_METHOD"/>
+		<result property="payprice" column="PAY_PRICE"/>
+		<result property="patstatus" column="PAY_STATUS"/>
+	</resultMap>
+	
+	<select id="selectPayOrderList" parameterType="_int" resultMap="OrderResultMap">
+			SELECT O.M_NO,
+		        O.PAY_NO,
+		        O.O_DATE,
+		        O.O_ADRESS,
+		        O.O_MESSAGE,
+		        P.P_NO,
+		        P.P_NAME,
+		        P.P_PRICE,
+		        O.O_QTT,
+		        P.P_RENAMEFILE,
+	            PA.PAY_MERCHANT,
+		        PA.PAY_METHOD,
+		        PA.PAY_PRICE,
+		        PA.PAY_STATUS
+				FROM ORDERS O 
+			JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+			JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+			WHERE M_NO = #{m_no}
+			AND PA.PAY_STATUS = '배송준비중'
+			ORDER BY O.O_DATE DESC
+	</select>
+	
+	<select id="selectCancelOrderList" parameterType="_int" resultMap="OrderResultMap">
+			SELECT O.M_NO,
+		        O.PAY_NO,
+		        O.O_DATE,
+		        O.O_ADRESS,
+		        O.O_MESSAGE,
+		        P.P_NO,
+		        P.P_NAME,
+		        P.P_PRICE,
+		        O.O_QTT,
+		        P.P_RENAMEFILE,
+	            PA.PAY_MERCHANT,
+		        PA.PAY_METHOD,
+		        PA.PAY_PRICE,
+		        PA.PAY_STATUS
+				FROM ORDERS O 
+			JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+			JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+			WHERE M_NO = #{m_no}
+			AND PA.PAY_STATUS = '환불대기중'
+			ORDER BY O.O_DATE DESC
+	</select>
+	
+	<select id="selectAllOrderListByMNo" parameterType="_int" resultMap="OrderResultMap">
+		SELECT O.M_NO,
+	        O.PAY_NO,
+	        O.O_DATE,
+	        O.O_ADRESS,
+	        O.O_MESSAGE,
+	        P.P_NO,
+	        P.P_NAME,
+	        P.P_PRICE,
+	        O.O_QTT,
+	        P.P_RENAMEFILE,
+            PA.PAY_MERCHANT,
+	        PA.PAY_METHOD,
+	        PA.PAY_PRICE,
+	        PA.PAY_STATUS
+			FROM ORDERS O 
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		WHERE M_NO = #{m_no}
+		ORDER BY O.O_DATE DESC
+	</select>
+	
+	<select id="selectOrderListByMNo" resultMap="OrderResultMap">
+		SELECT O.M_NO,
+	        O.PAY_NO,
+	        O.O_DATE,
+	        O.O_ADRESS,
+	        O.O_MESSAGE,
+	        P.P_NO,
+	        P.P_NAME,
+	        P.P_PRICE,
+	        O.O_QTT,
+	        P.P_RENAMEFILE,
+            PA.PAY_MERCHANT,
+	        PA.PAY_METHOD,
+	        PA.PAY_PRICE,
+	        PA.PAY_STATUS
+			FROM ORDERS O 
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		WHERE M_NO = #{m_no}
+		AND PA.PAY_STATUS IN ('배송준비중', '배송완료')
+		<if test="dateFrom != null">
+			AND O.O_DATE BETWEEN #{dateFrom} AND TO_DATE(#{dateTo})+1
+		</if>
+		ORDER BY O.O_DATE DESC
+	</select>
+	
+	<select id="selectCancelOrderListByMNo" resultMap="OrderResultMap">
+		SELECT O.M_NO,
+	        O.PAY_NO,
+	        O.O_DATE,
+	        O.O_ADRESS,
+	        O.O_MESSAGE,
+	        P.P_NO,
+	        P.P_NAME,
+	        P.P_PRICE,
+	        O.O_QTT,
+	        P.P_RENAMEFILE,
+            PA.PAY_MERCHANT,
+	        PA.PAY_METHOD,
+	        PA.PAY_PRICE,
+	        PA.PAY_STATUS
+			FROM ORDERS O 
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		WHERE M_NO = #{m_no}
+		AND PA.PAY_STATUS IN ('환불대기중', '환불완료')
+		<if test="dateFrom != null">
+			AND O.O_DATE BETWEEN #{dateFrom} AND TO_DATE(#{dateTo})+1
+		</if>
+		ORDER BY O.O_DATE DESC
+	</select>
+	
+	<select id="selectOrderByPayNo" parameterType="_int" resultMap="OrderResultMap">
+		SELECT O.M_NO,
+	        O.PAY_NO,
+	        O.O_DATE,
+	        O.O_ADRESS,
+	        O.O_MESSAGE,
+	        O.O_NAME,
+	        O.O_PHONE,
+	        O.O_POSTNUM,
+	        O.O_ADRESSDETAIL,
+	        P.P_NO,
+	        P.P_NAME,
+	        P.P_PRICE,
+	        O.O_QTT,
+	        P.P_RENAMEFILE,
+            PA.PAY_MERCHANT,
+	        PA.PAY_METHOD,
+	        PA.PAY_PRICE,
+	        PA.PAY_STATUS
+			FROM ORDERS O 
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		WHERE O.PAY_NO = #{payNo}
+		ORDER BY O.O_DATE DESC
+	</select>
+	
+	<select id="selectLikesAllList" parameterType="_int" resultMap="contentsListResultMap">
+		SELECT
+		<include refid="contentsListSql"/>
+		,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		JOIN LIKES L ON (L.C_NO = C.C_NO)
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y' 
+       	AND L.M_NO = #{mNo}
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
+	</select>
+	
+	<select id="selectLikesCount" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+			JOIN LIKES L ON (L.C_NO = C.C_NO)
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND L.M_NO = #{m_no}
+	       	AND C.C_TYPE = #{type}
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
+	</select>
+	
+	<select id="selectLikesList" resultMap="contentsListResultMap">
+		SELECT
+		<include refid="contentsListSql"/>
+		,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		JOIN LIKES L ON (L.C_NO = C.C_NO)
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y' 
+       	AND L.M_NO = #{m_no}
+       	AND C.C_TYPE = #{type}
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
+	</select>
+	
+	<select id="selectLikesSearchCount" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+			JOIN LIKES L ON (L.C_NO = C.C_NO)
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND L.M_NO = #{m_no}
+	       	AND C.C_TYPE = #{type}
+   			<if test="searchType == 'title'">
+		 		AND C.C_TITLE LIKE '%' || #{searchVal} || '%'
+			</if>
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
+	</select>
+	
+	<select id="selectLikesSearchList" resultMap="contentsListResultMap">
+		SELECT
+		<include refid="contentsListSql"/>
+		,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		JOIN LIKES L ON (L.C_NO = C.C_NO)
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y' 
+       	AND L.M_NO = #{m_no}
+       	AND C.C_TYPE = #{type}
+       	<if test="searchType == 'title'">
+	 		AND C.C_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
+	</select>
+	
+	<select id="selectReviewAllCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND R.M_NO = #{m_no}
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
+	</select>
+	
+	<select id="selectReviewCount" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND R.M_NO = #{m_no}
+	       	AND C.C_TYPE = #{type}
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
+	</select>
+	
+	<select id="selectReviewList" resultMap="contentsListResultMap">
+		SELECT
+		<include refid="contentsListSql"/>
+		,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y' 
+       	AND R.M_NO = #{m_no}
+       	AND C.C_TYPE = #{type}
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
+	</select>
+
+	
+	
+	<select id="selectFreeBoardCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE M_NO = #{m_no} AND B_TYPE = 'FREE' AND B_STATUS = 'Y'
+	</select>
+
+	<select id="selectFreeBoardList" parameterType="_int" resultMap="BoardResultMap">
+		<include refid="boardSql" />
+		AND M.M_NO = #{mNo} AND B.B_TYPE='FREE' ORDER BY B.B_NO DESC
+	</select>
+		
+	<select id="selectQnaBoardCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE M_NO = #{m_no} AND B_TYPE = 'QNA' AND B_STATUS = 'Y'
+	</select>
+	
+	<select id="selectQnaBoardList" parameterType="_int" resultMap="BoardResultMap">
+		<include refid="boardSql" />
+		AND M.M_NO = #{mNo} AND B.B_TYPE='QNA' ORDER BY B.B_NO DESC
+	</select>
+	
+	<select id="selectFreeBoardSearchCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE M_NO = #{m_no} AND B_TYPE = 'FREE' AND B_STATUS = 'Y' 
+		<if test="searchType == 'title'">
+		 	AND B_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'content'">
+		 	AND B_CONTENT LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'titlecontent'">
+		 	AND (B_TITLE LIKE '%' || #{searchVal} || '%'
+		 	OR B_CONTENT LIKE '%' || #{searchVal} || '%')
+		</if>
+	</select>
+	
+	<select id="selectFreeBoardSearchList" resultMap="BoardResultMap">
+		<include refid="boardSql" />
+		AND M.M_NO = #{m_no} AND B.B_TYPE='FREE' 
+				<if test="searchType == 'title'">
+		 	AND B.B_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'content'">
+		 	AND B.B_CONTENT LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'titlecontent'">
+		 	AND (B.B_TITLE LIKE '%' || #{searchVal} || '%'
+		 	OR B.B_CONTENT LIKE '%' || #{searchVal} || '%')
+		</if>
+		ORDER BY B.B_NO DESC
+	</select>
+	
+	<select id="selectQnaBoardSearchCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE M_NO = #{m_no} AND B_TYPE = 'QNA' AND B_STATUS = 'Y' 
+		<if test="searchType == 'title'">
+		 	AND B_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'content'">
+		 	AND B_CONTENT LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'titlecontent'">
+		 	AND (B_TITLE LIKE '%' || #{searchVal} || '%'
+		 	OR B_CONTENT LIKE '%' || #{searchVal} || '%')
+		</if>
+	</select>
+	
+	<select id="selectQnaBoardSearchList" resultMap="BoardResultMap">
+		<include refid="boardSql" />
+		AND M.M_NO = #{m_no} AND B.B_TYPE='QNA' 
+				<if test="searchType == 'title'">
+		 	AND B.B_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'content'">
+		 	AND B.B_CONTENT LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'titlecontent'">
+		 	AND (B.B_TITLE LIKE '%' || #{searchVal} || '%'
+		 	OR B.B_CONTENT LIKE '%' || #{searchVal} || '%')
+		</if>
+		ORDER BY B.B_NO DESC
+	</select>
+	
+	<select id="selectReviewSearchCount" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND R.M_NO = #{m_no}
+	       	AND C.C_TYPE = #{type}
+   			<if test="searchType == 'title'">
+		 		AND C.C_TITLE LIKE '%' || #{searchVal} || '%'
+			</if>
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
+	</select>
+	
+	<select id="selectReviewSearchList" resultMap="contentsListResultMap">
+		SELECT
+		<include refid="contentsListSql"/>
+		,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y' 
+       	AND R.M_NO = #{m_no}
+       	AND C.C_TYPE = #{type}
+		<if test="searchType == 'title'">
+	 		AND C.C_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
+	</select>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER SET 
+			M_NAME = #{m_name},
+			M_EMAIL = #{m_email},
+			M_PHONE = #{m_phone},
+			M_ADDRESS = #{m_address},
+		    M_GENDER = #{m_gender},
+		    M_BIRTH = #{m_birth},
+		    M_POSTNUM = #{m_postNum},
+			M_DETAILADDRESS = #{m_detailAddress}		
+		WHERE M_NO = #{m_no}
+	</update>
+	
+	<update id="deleteMember" parameterType="_int">
+		UPDATE MEMBER SET
+		M_STATUS = 'N'
+		WHERE M_NO = #{m_no}
+	</update>
+	
+	<update id="updateMemberPwd">
+		UPDATE MEMBER SET
+		M_PW = #{password}
+		WHERE M_NO = #{m_no}
+	</update>
+	
+	<update id="payCancel" parameterType="_int">
+		UPDATE PAY SET
+		PAY_STATUS = '환불대기중'
+		WHERE PAY_NO = #{payNo}
+	</update>
+	
+	<update id="refundCancel" parameterType="_int">
+		UPDATE PAY SET
+		PAY_STATUS = '배송준비중'
+		WHERE PAY_NO = #{payNo}
+	</update>
+	<delete id="deleteDibsContent">
+		DELETE FROM LIKES
+		WHERE M_NO = #{m_no}
+		AND C_NO IN
+		<foreach collection="list" item="c_no" open="(" separator="," close=")">
+				#{c_no}
+		</foreach>
+	</delete>
+	
+
+	
+</mapper>
+

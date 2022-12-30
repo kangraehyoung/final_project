@@ -1,0 +1,98 @@
+/* 전체 컨테이너 */
+#admin_sidebar {  
+}
+.nav-link {
+    padding : 0.5rem;	
+}
+
+/* 사이드메뉴 폰트 크기 및 옵션*/
+#admin_nav_title {
+    font-weight: 700;
+}
+
+#admin_nav_subtitle{
+    font-size: .9em;
+    list-style-type: none;
+    color: black;
+}
+#admin_nav_sublist{
+    font-size: .85em;
+    color: black;
+    text-decoration-line: none;
+}
+#sidebar_col {    
+    max-height: 100%;}
+
+/* 메뉴 호버 색상 */
+a:hover {color:#495FE9; text-decoration: none!important;}
+#admin_nav_subtitle:hover {color:#495FE9 ;}
+ul .card-body {padding: 0px;}
+
+.nav-link {
+    padding: 0;
+}
+
+/* 버튼 기본색상 */
+.btn-primary {background-color: #4e73df; border: #495FE9;}
+.text-style {color:#4e73df;}
+/* 네비게이션 줄높이 */
+.nav-item li {line-height: 21px;}
+ul{list-style:none; padding-left: 3rem; color:#495FE9 ;}
+ul li {line-height: 21px;}
+
+/* 아이콘 사이즈 */
+svg {width: 21px; height: 21px;}
+
+/* 메인페이지 카드색상 */
+.border-left-primary {border-left: 0.25rem solid #4e73df!important;}
+.border-left-success {border-left: 0.25rem solid #1cc88a!important;}
+.border-left-info {border-left: 0.25rem solid #36b9cc!important;}
+
+/* 게시판 테이블 관련 */
+tr {text-align: center; vertical-align: middle;}
+td {text-align: center; vertical-align: middle;}
+
+
+/* 상품관리페이지 관련 */
+#admin_goods_imgbox img {width: 50px; height: 50px;}
+
+/* 파이차트 관련 */
+#pie_chart {font-size: 1px;}
+
+/* 통계 관련 */
+.total_table {display: inline;}
+
+/* 인물페이지 오른쪽 border 관련 */
+.mycategory{
+    padding-top: 7px;
+    border: 1px solid grey;
+    text-align: center;
+}
+/* 인물페이지 hover 수정 관련 */
+.item_poster .poster_info {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(26, 25, 28, 0.95);
+    opacity: 0;
+    -webkit-transition: all .2s ease-out .3s;
+    transition: all .2s ease-out .3s; }
+
+.item_poster .link_story {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    /* max-height: 160px; */
+    padding: 135px 24px 0;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+    line-height: 20px;
+    color: #D4D4D4;
+    text-decoration: none; }
+.people_nohover {
+    display: block;
+
+}

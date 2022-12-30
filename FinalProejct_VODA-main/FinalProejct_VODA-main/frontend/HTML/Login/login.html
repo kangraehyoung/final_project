@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+
+    <!--BootStrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <!-- Font CSS -->
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css	'>
+
+    <!-- mainstyle CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+
+    <!-- Bootswatch  
+        <link rel="stylesheet" href="../../CSS/Login/bootstrap.min.css">
+    -->
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <!-- login CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Login/login.css">
+</head>
+<body>
+        <!-- 헤더 시작 -->
+        <div class="container p-0">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand mr-1" href="#"><img src="../../IMG/Common/VODA.png" width="200px"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarColor03">
+                        <ul class="navbar-nav me-auto mt-1">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                CONTENTS
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">MOVIE</a></li>
+                                <li><a class="dropdown-item" href="#">TV</a></li>
+                                <li><a class="dropdown-item" href="#">BOOK</a></li>
+                                <li><a class="dropdown-item" href="#">WEBTOON</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">GOODS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">RANKING</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                COMMUNITY
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">FREE BOARD</a></li>
+                                <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </div>
+            
+                        <div class="search">
+                        <form class="d-flex">
+                        <input class="form-control me-sm-2" type="text">
+                        </form>
+                        </div>
+            
+                        <div class="right">
+                        <a class="text-nowrap" id="login" href="#">로그인</a>
+                        <a class="text-nowrap" id="join"href="#">회원가입</a>
+                        </div>
+            
+                    </div>
+                </nav>
+                </div>
+                <hr class="mt-1 mb-0 line">
+                <!-- 헤더 끝 -->
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <br>
+                        <h3 class="pt-3 font-weight-bold">로그인</h3>
+                        <br>
+                        <h2 tabindex="0" class="login-box-hd">VODA 계정으로 로그인</h2>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form action="login_script.php" method="POST">
+                            <div class="form-group py-2" style="margin-bottom: 0px;">
+                                <div class="input-field">
+                                    <span class="far fa-user p-2"></span> 
+                                    <input id="userId" type="text" placeholder="이메일 주소 또는 아이디" required> 
+                                </div>
+                            </div>
+                            <div class="main">
+                                <div class="input-field">
+                                    <span class="fas fa-lock px-2"></span>
+                                    <input id="loginPwd" type="password" placeholder="비밀번호" required>
+                                    <div class="btn bg-white text-muted"> 
+                                        <i id="eye" class="fa fa-eye fa-lg"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="form-inline">
+                                <input type="checkbox" name="remember" id="remember">
+                                <label for="remember" class="text-muted">아이디 저장</label> 
+                            </span>
+                            <span class="form-inline"> 
+                                <input type="checkbox" name="autoLogin" id="autoLogin"> 
+                                <label for="autoLogin" class="text-muted">자동 로그인</label>
+                            </span>
+                            <br>
+                            <button type="submit" class="btn-logoc">로그인</button>
+                            <ul class="join-find">
+                                <li>
+                                    <a href="#" id="forgotId" class="">아이디 찾기</a>
+                                    <li:after/>
+                                </li>
+                                <li>
+                                    <a href="#" id="forgotPwd" class="">비밀번호 찾기</a>
+                                </li>
+                                <li>
+                                    <a href="#" id="enroll" class="">회원가입</a>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    
+                    <div class="mx-3 my-2 py-2 bordert">
+                        <a id="custom-login-btn" href="javascript:loginWithKakao()">
+                            <img id="kakao"
+                                src="http://papaspick.com/web/upload/2019_web/icon/kakao_login.jpg"
+                                width="222"
+                                alt="카카오 로그인 버튼"
+                                />
+                            </a>
+                            <script type="text/javascript">
+                                function loginWithKakao() {
+                                Kakao.Auth.login({
+                                    success: function(authObj) {
+                                    alert(JSON.stringify(authObj))
+                                    },
+                                    fail: function(err) {
+                                    alert(JSON.stringify(err))
+                                    },
+                                })
+                                }
+                            </script>
+                        <!-- <div class="text-center py-3"> <a href="https://wwww.facebook.com" target="_blank" class="px-2"> <img src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg" alt="">  -->
+                        <!-- </a> <a href="https://www.google.com" target="_blank" class="px-2"> <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png" alt="">  -->
+                        <!-- </a> <a href="https://www.github.com" target="_blank" class="px-2"> <img src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png" alt=""> </a>  -->
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- 푸터 -->
+        <footer class="bg-light text-center text-lg-start">
+            <div style="background-color: rgb(235, 236, 240);">
+                <!-- Grid container -->
+                <div class="container p-4" style="background-color: rgb(235, 236, 240);">
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Left Grid column-->
+                        <div class="col-lg-6 col-md-12 mb-1 mb-md-0"
+                            style="text-align:center; background-color: rgb(235, 236, 240);">
+                            <h5 class="text-uppercase">Project</h5>
+                            <div style="text-align:center;"><img id="footerlogo" src="../../IMG/Common/VODA.png" class="cul my-3"> <br><br>
+                                <a class="text-dark" href="#">© 2022 Copyright: voda.com</a>
+                            </div>
+                        </div>
+                        <!--Left Grid column-->
+        
+                        <!--Right Grid column-->
+                        <div class="col-lg-6 col-md-12 mb-4 mb-md-0"
+                            style="text-align:center; background-color: rgb(235, 236, 240);">
+                            <h5 class="text-uppercase">contact us</h5>
+                            <div class="cul my-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                                </svg> &nbsp; 02-123-4567 &nbsp;
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                                </svg> &nbsp; vodaofficial@gmail.com <br><br>
+                                <p>
+                                    <a href="#!">이용안내</a> &nbsp;
+                                    <a href="#!">이용약관</a> &nbsp;
+                                    <a href="#!">개인정보처리방침</a>
+                                </p>
+                                <div>Business license : 706-20-01181 <br> Mall-order license : 2022-서울시-0334</div>
+                            </div>
+                        </div>
+                        <!--Right Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </div>
+                <!-- Grid container -->
+        </footer>
+        <!-- 푸터 끝-->
+    
+        <!-- jQuery 
+        -->
+        <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+    <!-- Popper JS -->
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script> -->
+
+    <!--BootStrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+<script>
+
+$(document).ready(function(){
+    $('#eye').on('click',function(){
+        $('input').toggleClass('active');
+        if($('input').hasClass('active')){
+            $(this).attr('class',"fa fa-eye-slash fa-lg")
+            .prev('input').attr('type',"text");
+        }else{
+            $(this).attr('class',"fa fa-eye fa-lg")
+            .prev('input').attr('type','password');
+        }
+    });
+});
+
+
+</script>
+
+
+</body>
+</html>

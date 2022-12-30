@@ -1,0 +1,248 @@
+/* 사이드 메뉴바 */
+.mySideMenu {
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-bottom: 500px;
+}
+
+.mySideMenu > h5:hover{
+	color:#495FE9;
+	cursor: pointer;
+}
+
+.rightMainMenu:hover{
+	color:#495FE9;
+	cursor: pointer;
+}
+
+.mySideMenuTitle{
+    font-weight: 700;
+    padding-left: 0px;
+}
+.mySideMenuTitle:hover{
+    color:#495FE9;
+}
+
+.myMenuTitle{
+    font-weight: 700;
+    padding-left: 0px;
+}
+
+.mySideMenuSubTitle *{
+    font-size: 0.82em;
+    list-style-type: none;
+}
+
+.mySideMenuSubTitle *:hover{
+    color:#495FE9;
+}
+
+/* 카드 */
+.card-group{
+    margin-top: 20px;
+    color: black;
+}
+
+.card-img-top{
+    height: 40px;
+    width: 40px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 0px;
+}
+
+.card-img-mid{
+    height: 35px;
+    width: 35px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.card{  
+    text-align: center;
+}
+
+.card-title {
+    font-size: 0.9em;
+}
+
+.card-text{
+    font-size: 0.9em;
+}
+
+.card-text *{
+    font-size: 0.9em;
+}
+
+/* 테이블 */
+.mytable{
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid lightgray;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    word-break: break-all;
+}
+
+.table_thead{
+    height: 35px;
+}
+
+.table_th{
+    /* background-color: rgba(238, 233, 233, 0.6); */
+    border-bottom: 1px solid lightgrey;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.table_td {
+    border-bottom: 1px solid lightgrey;
+    height: 55px;
+    font-size: 0.8em;
+}
+
+
+/* 개인정보 테이블 */
+.infotable_th{
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.infotable_td{
+    vertical-align: middle;
+    font-size: 0.85em;
+    font-weight: 400;
+    height: 54.16px;
+}
+
+.infotable input[type=text]{
+    width: 200px;
+    height: 27.66px;
+    outline: none;
+    border: 1px solid #ced4da;
+}
+
+.infotable label {
+    font-size: 0.9em;
+    font-weight: 450;
+}
+/* 이메일 주소 콤보박스 */
+select {
+    height: 27.66px;
+    border: 1px solid #ced4da;
+}
+
+select:focus {
+	outline: none;
+}
+
+select * {
+    font-size: 1em;
+}
+/*생년월일*/
+.birth1 {
+    font-size: 0.85em;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 3px;
+    padding: 0px 15px;
+    
+}
+
+#css-birth1, #css-birth2 {
+    width: 50%;
+    border: none;
+    color: rgb(51, 51, 51);
+    outline: none;
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+.birth3::after {
+    content: "/";
+    color: rgb(204, 204, 204);
+    text-align: center;
+}
+
+
+/* 구매내역 테이블 */
+.paytable{
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid lightgray;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    word-break: break-all;
+}
+
+.paytable_thead{
+    height: 35px;
+}
+
+.paytable_th{
+    /* background-color: rgba(238, 233, 233, 0.6); */
+    border-bottom: 1px solid lightgrey;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.paytable_td{
+    height: 55px;
+    font-size: 0.8em;
+}
+
+/* 테이블 제목 폰트 */
+.tabletitle{
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.tablesubtitle{
+    color: grey;
+    font-size: 0.75em;
+    text-align: right;
+}
+
+
+/* 주문취소버튼 */
+#mycbtn{
+    background-color: rgb(255, 255, 255); 
+    color: black; 
+    font-size: 0.9em; 
+    height: 23px; 
+    padding: 3px;
+}
+
+/* 회원탈퇴 테이블 */
+.table_td label{
+    text-align: center;
+    font-size: 0.8em;
+}
+
+/* 회원탈퇴 남기실말씀 */
+.mytextarea{
+    width: 98%; 
+    height: 90%; 
+    border: 1px solid lightgrey; 
+    margin-top: 5px;
+}
+
+/* 컨텐츠 카테고리 */
+.mycategory{
+    padding-top: 7px;
+    border: 1px solid grey;
+    border-right: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.boardtable *{
+    font-size: 0.95em;
+    white-space: nowrap;
+}
+

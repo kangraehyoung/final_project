@@ -1,0 +1,106 @@
+	/* 폰트 */
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    * { font-family: Pretendard, 
+        -apple-system, BlinkMacSystemFont, 
+        system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    }
+
+    * { font-size: 16px;}
+
+    /* 로고 이미지 간격 조절 */
+    .logoimg {
+        padding-right: 8px;
+        width: 200px;
+    }
+
+    /* 컨테이너 너비 조절 */
+    .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .navbar {
+        padding-left: 0px;
+        padding-right: 0px;
+    } 
+
+    /* 호버 메뉴 밑 선 굵기 */
+    .line {
+        margin-top:-2.9px;
+    }
+
+    /* 메뉴 호버 기능 */
+    .dropdown:hover .dropdown-menu {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 2.5%; 
+        display: block;
+        border: none;
+        /* margin-top: 2px; */
+        /* box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05); */
+        /* border-top: none; */
+        /* border-bottom: none; */ 
+        /* opacity : 0.5; */ 
+    }
+
+    /* 드롭다운 메뉴 글자색상 지정 */
+    .dropdown-item {
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* 오른쪽 헤더 메뉴 간격 조정 */
+    .right {
+        color: rgba(0, 0, 0, 0.5);
+        margin-left: 20px;
+    }
+
+    #join {
+        margin-right: 0px;
+    }
+
+    #login {
+        margin-right: 16px;
+    }
+    
+    #mypage {
+        margin-right: 16px;
+    }
+
+    /* input 돋보기 */
+    .search input {
+        background-image: 
+        url(https://cdn-icons-png.flaticon.com/512/149/149852.png);
+        opacity: 0.4;
+        padding-left: 40px;
+        background-size: 18px;
+        background-position: 12px 10px ;
+        background-repeat: no-repeat
+    } 
+
+    .form-control me-sm-2 {
+        width: 200px;
+    }
+
+    /* 링크 파랑색 밑줄 효과 삭제 */
+    a:link {
+        color : black;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color : black;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color : black;
+        text-decoration: none;
+    }
+
+    a:active {
+        color : black;
+        text-decoration: none;
+    }	
+
+    #footerlogo {
+        width: 200px;
+    }

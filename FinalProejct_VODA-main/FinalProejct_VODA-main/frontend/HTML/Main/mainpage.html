@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--BootStrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <!--BootStrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
+    
+    <!-- common CSS-->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+
+    <!-- mainpage CSS-->
+    <link rel="stylesheet" href="../../CSS/Main/mainpagestyle.css">
+    
+    <title>Document</title>
+</head>
+<body>
+
+<!-- 헤더 시작 -->
+<div class="container p-0">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand mr-1" href="#"><img class="logoimg" src="../../IMG/Common/VODA.png"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor03">
+          <ul class="navbar-nav me-auto mt-1">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  CONTENTS
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">MOVIE</a></li>
+                  <li><a class="dropdown-item" href="#">TV</a></li>
+                  <li><a class="dropdown-item" href="#">BOOK</a></li>
+                  <li><a class="dropdown-item" href="#">WEBTOON</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">GOODS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">RANKING</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  COMMUNITY
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">FREE BOARD</a></li>
+                  <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      <div class="search">
+        <form class="d-flex">
+          <input class="form-control me-sm-2" type="text">
+        </form>
+      </div>
+
+      <div class="right">
+        <a class="text-nowrap" id="login" href="#">로그인</a>
+        <a class="text-nowrap" id="join"href="#">회원가입</a>
+      </div>
+
+    </div>
+  </nav>
+</div>
+<!-- 헤더 끝 -->
+    
+    <div class="videowrapper">
+      <!-- autoplay 요소를 지우면 자동 재생이 되지 않음 -->
+      <video loop muted controls poster="../../IMG/Main/thumbnail.png">
+        <source src="../../IMG/Main/trailer.mp4" type="">
+      </video>
+  
+      <div class="container p-0">
+        <div class="info">
+          <p class="title">블레이드 러너 2049</p>
+          <div class="outline d-none d-lg-block">
+            핵전쟁 이후 혼돈으로 무질서로 휩싸인 2019년, 복제인간 ‘로이’를 포함한 <br>
+            ‘넥서스 6’이 오프월드에서 반란을 일으킨 후 지구로 잠입한다... <br>
+          </div>
+          <br>
+          <button type="button" class="btn btn-outline-light">리뷰 보러가기</button>
+        </div>
+      </div>
+      
+      <div class="container" style="padding: 0px;" id="rankcontainer">
+        <div class="row rank-boxes">
+  
+          <div class="col mainrank ml-0">
+            <div class="rankingnumber">1</div>
+              <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+                <div class="rankinginfo">
+                  <p>사랑의 불시착</p>
+                  분류 드라마<br>
+                  장르 로맨스<br>
+                  등급 15세 이용가<br>
+                </div>
+          </div>
+  
+          <div class="col mainrank">
+            <div class="rankingnumber">2</div>
+              <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+                <div class="rankinginfo">
+                  <p>사랑의 불시착</p>
+                  분류 드라마<br>
+                  장르 로맨스<br>
+                  등급 15세 이용가<br>
+                </div>
+          </div>
+  
+          <div class="col mainrank">
+            <div class="rankingnumber">3</div>
+              <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+                <div class="rankinginfo">
+                  <p>제목 사랑의 불시착</p>
+                  분류 드라마<br>
+                  장르 로맨스<br>
+                  등급 15세 이용가<br>
+                </div>
+          </div>
+  
+          <div class="col mainrank">
+            <div class="rankingnumber">4</div>
+              <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+                <div class="rankinginfo">
+                  <p>사랑의 불시착</p>
+                  분류 드라마<br>
+                  장르 로맨스<br>
+                  등급 15세 이용가<br>
+                </div>
+          </div>
+  
+          <div class="col mainrank mr-0">
+            <div class="rankingnumber">5</div>
+              <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+                <div class="rankinginfo">
+                  <p>사랑의 불시착</p>
+                  분류 드라마<br>
+                  장르 로맨스<br>
+                  등급 15세 이용가<br>
+                </div>
+          </div>
+        
+        </div> <!-- 랭크 박스 끝 -->
+      </div> <!-- 컨테이너 끝 -->
+    </div> <!-- 비디오래퍼 끝 -->
+
+    <div class="container" style="padding: 0px;" id="new-contents-container">
+
+      <div class="row ml-0" style="width: 1140px;">
+        <div class="col-2 p-0 new-contents-info">최근 업데이트 된 컨텐츠</div>
+        <div class="col-10 new-contents-line"></div>
+      </div>
+      <div class="row" id="new-contents">
+        <div class="col mainrank ml-0">
+            <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+              <div class="rankinginfo">
+                <p>사랑의 불시착</p>
+                분류 드라마<br>
+                장르 로맨스<br>
+                등급 15세 이용가<br>
+              </div>
+        </div>
+
+        <div class="col mainrank">
+            <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+              <div class="rankinginfo">
+                <p>사랑의 불시착</p>
+                분류 드라마<br>
+                장르 로맨스<br>
+                등급 15세 이용가<br>
+              </div>
+        </div>
+
+        <div class="col mainrank">
+            <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+              <div class="rankinginfo">
+                <p>제목 사랑의 불시착</p>
+                분류 드라마<br>
+                장르 로맨스<br>
+                등급 15세 이용가<br>
+              </div>
+        </div>
+
+        <div class="col mainrank">
+            <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+              <div class="rankinginfo">
+                <p>사랑의 불시착</p>
+                분류 드라마<br>
+                장르 로맨스<br>
+                등급 15세 이용가<br>
+              </div>
+        </div>
+
+        <div class="col mainrank mr-0">
+            <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+              <div class="rankinginfo">
+                <p>사랑의 불시착</p>
+                분류 드라마<br>
+                장르 로맨스<br>
+                등급 15세 이용가<br>
+              </div>
+        </div>
+      </div>
+    </div> <!-- 컨테이너 끝 -->
+</body>
+</html>
+

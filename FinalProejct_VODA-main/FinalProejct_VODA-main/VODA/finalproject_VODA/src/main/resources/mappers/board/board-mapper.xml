@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.board.model.mapper.BoardMapper">
+
+	<sql id="BoardListSql">
+		SELECT
+		    B.B_NO, 
+		    M.M_NO, 
+		    B.B_TITLE, 
+		    B.B_TYPE, 
+		    B.B_DATE, 
+		    B.B_CONTENT, 
+		    B.B_ORIGINAL_FILENAME, 
+		    B.B_RENAMED_FILENAME, 
+		    B.B_VIEW, 
+		    B.B_STATUS, 
+		    B.B_ANSWER_STATUS, 
+		    B.BCATEGORY, 
+		    M.M_ID,
+		    B.COMMENTS
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_STATUS = 'Y'
+	</sql>	 
+	
+
+	<resultMap type="Board" id="BoardResultMap">
+		<id property="bno" column="B_NO"/>
+		<result property="mno" column="M_NO"/>
+		<result property="btitle" column="B_TITLE"/>
+		<result property="btype" column="B_TYPE"/>
+		<result property="bcreatedate" column="B_DATE"/>
+		<result property="bcontent" column="B_CONTENT"/>
+		<result property="boriginalfilename" column="B_ORIGINAL_FILENAME"/>
+		<result property="brenamedfilename" column="B_RENAMED_FILENAME"/>
+		<result property="bview" column="B_VIEW"/>
+		<result property="banswerstatus" column="B_ANSWER_STATUS"/>
+		<result property="bcategory" column="BCATEGORY"/>
+		<result property="bstatus" column="B_STATUS"/>
+		<result property="mid" column="M_ID"/>
+	</resultMap>
+	
+	<resultMap type="Board" id="BoardDetailResultMap" extends="BoardResultMap">
+		<collection property="comments" javaType="arraylist" columnPrefix="CM_" resultMap="CommentsResultMap"/>
+	</resultMap> 	
+	
+	<sql id="NoticeListSql">
+		SELECT
+		    N.N_NO, 
+		    N.N_TITLE, 
+		    N.N_WRITERNO, 
+		    N.N_ID, 
+		    N.N_CONTENT, 
+		    N.N_ORIGINAL_FILENAME, 
+		    N.N_RENAMED_FILENAME, 
+		    N.N_READCOUNT, 
+		    N.N_STATUS, 
+		    N.N_CREATE_DATE, 
+		    N.N_TOPTITLE
+		FROM NOTICE N
+		JOIN MEMBER M ON (N.N_WRITERNO = M.M_NO)
+		WHERE N.N_STATUS = 'Y'
+	</sql>	 
+	
+	<resultMap type="Notice" id="NoticeResultMap">
+		<id property="noticeno" column="N_NO"/>
+		<result property="noticeTitle" column="N_TITLE"/>
+		<result property="noticeWriterNo" column="N_WRITERNO"/>
+		<result property="noticeWriterId" column="N_ID"/>
+		<result property="noticeContent" column="N_CONTENT"/>
+		<result property="noticeOriginalFileName" column="N_ORIGINAL_FILENAME"/>
+		<result property="noticeRenamedFileName" column="N_RENAMED_FILENAME"/>
+		<result property="noticeReadCount" column="N_READCOUNT"/>
+		<result property="noticeStatus" column="N_STATUS"/>
+		<result property="noticeCreateDate" column="N_CREATE_DATE"/>
+		<result property="noticeTopTitle" column="N_TOPTITLE"/>
+	</resultMap>
+	
+	<!-- 게시판 전체 조회 -->
+	<select id="selectBoardCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE B_STATUS='Y'
+		AND B_TYPE = #{type}
+	</select>
+	
+	<!-- 게시판 전체 조회 정렬 -->
+	<select id="selectAllBoard" resultMap="BoardResultMap">
+		<include refid="BoardListSql"></include>
+		AND B.B_TYPE = #{type}
+		ORDER BY B.B_NO DESC
+	</select>
+	
+		<!-- 게시판 상세 조회 -->
+	<select id="selectBoardByNo" parameterType="_int" resultMap="BoardDetailResultMap">
+		SELECT
+		    B.B_NO, 
+		    M.M_NO, 
+		    B.B_TITLE, 
+		    B.B_TYPE, 
+		    B.B_DATE, 
+		    B.B_CONTENT, 
+		    B.B_ORIGINAL_FILENAME, 
+		    B.B_RENAMED_FILENAME, 
+		    B.B_VIEW, 
+		    B.B_STATUS, 
+		    B.B_ANSWER_STATUS, 
+		    B.BCATEGORY, 
+		    M.M_ID,
+            C.CM_NO AS "CM_CM_NO",
+            C.B_NO AS "CM_B_NO",
+            C.CM_CONTENT AS "CM_CM_CONTENT",
+            C.CM_WRITER_ID AS "CM_CM_WRITER_ID",
+            C.CM_WRITER_NO AS "CM_CM_WRITER_NO",
+            C.CM_DATE AS "CM_CM_DATE"
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+        LEFT JOIN 
+            (SELECT NUM,
+                CM_NO,
+                B_NO,
+                CM_CONTENT,
+                CM_WRITER_ID,
+                CM_WRITER_NO,
+                CM_DATE
+            FROM (
+                    SELECT ROWNUM AS "NUM",
+                        CM_NO,
+                        B_NO,
+                        CM_CONTENT,
+                        CM_WRITER_ID,
+                        CM_WRITER_NO,
+                        CM_DATE
+                    FROM COMMENTS 
+                    WHERE CM_STATUS = 'Y'
+                    ORDER BY CM_DATE 
+                ) )
+        C ON(B.B_NO = C.B_NO)
+        LEFT JOIN MEMBER M2 ON(C.CM_WRITER_NO = M2.M_NO)
+		WHERE B.B_STATUS = 'Y' AND B.B_NO = #{bno}
+	</select>	
+	
+		<!-- 게시판 삭제 (STATUS = 'N')-->
+	<update id="updateBoardStatus" parameterType="map">
+		UPDATE BOARD SET B_STATUS = #{bstatus} WHERE B_NO = #{bno}
+	</update>
+	
+		<!-- 게시판 등록 -->
+	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="bno" keyColumn="B_NO">
+		INSERT INTO BOARD (
+			B_NO,
+			B_TITLE,
+			B_TYPE, 
+			M_NO,
+			B_CONTENT,
+			B_ORIGINAL_FILENAME, 
+			B_RENAMED_FILENAME,
+			B_VIEW,
+			B_STATUS,
+			B_ANSWER_STATUS, 
+			BCATEGORY,
+			B_DATE
+		)
+		VALUES (
+			SEQ_BOARD_NO.NEXTVAL,
+			#{btitle},
+			#{btype},
+			#{mno},
+			#{bcontent},
+			#{boriginalfilename},
+			#{brenamedfilename},
+			#{bview},
+			#{bstatus},
+			DEFAULT,
+			#{bcategory},
+			CURRENT_DATE
+		)
+	</insert>
+	
+		<!-- 자유게시판 수정 -->
+	<update id="updateBoard" parameterType="Board">
+		UPDATE BOARD
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="btitle != null">
+				B_TITLE = #{btitle},
+			</if>
+			<if test="bcontent != null">
+				B_CONTENT = #{bcontent},
+			</if>
+			<if test="boriginalfilename != null">
+				B_ORIGINAL_FILENAME = #{boriginalfilename},
+			</if>
+			<if test="brenamedfilename != null">
+				B_RENAMED_FILENAME = #{brenamedfilename},
+			</if>
+			<if test="bcategory != null">
+				BCATEGORY = #{bcategory},
+			</if>
+		</trim>
+		WHERE B_NO = #{bno}
+	</update>
+	
+	<!-- 자유게시판 조회수 증가 -->
+	<update id="updateBoardView"  parameterType="Board">
+		UPDATE BOARD 
+		SET B_VIEW = B_VIEW + 1 
+		WHERE B_NO = #{bno}
+	</update>
+	
+		<!-- 자유게시판 전체 조회 (검색 총 개수) -->
+	<select id="getBoardSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*)
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_STATUS = 'Y'
+		
+		<if test='searchType == "btitle"'>
+		AND 
+			B_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "mid"'>
+		AND 
+			M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "bcontent"'>
+		AND 
+			B_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "boardtc"'>
+		AND
+			B_TITLE LIKE '%' || #{keyword} || '%'
+			OR
+			B_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+
+	<!-- 자유게시판 전체 조회 (검색 리스트) -->
+	<select id="getBoardSearchList" resultMap="BoardResultMap" parameterType="String">
+		<include refid="BoardListSql"></include>
+		
+		<if test='searchType == "btitle"'>
+		AND 
+			B_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "mid"'>
+		AND 
+			M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "bcontent"'>
+		AND
+			B_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "boardtc"'>
+		AND
+			B_TITLE LIKE '%' || #{keyword} || '%'
+			OR
+			B_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+	
+	<!-- 문의게시판 전체 조회 (검색 총 개수) -->
+	<select id="getQnaSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*)
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_STATUS = 'Y'
+		
+		<if test='searchType == "btitle"'>
+		AND 
+			B_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "mid"'>
+		AND 
+			M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "bcontent"'>
+		AND 
+			B_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "boardtc"'>
+		AND
+			B_TITLE LIKE '%' || #{keyword} || '%'
+			OR
+			B_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+
+	<!-- 문의게시판 전체 조회 (검색 리스트) -->
+	<select id="getQnaSearchList" resultMap="BoardResultMap" parameterType="String">
+		<include refid="BoardListSql"></include>
+		
+		<if test='searchType == "btitle"'>
+		AND 
+			B_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "mid"'>
+		AND 
+			M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "bcontent"'>
+		AND
+			B_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "boardtc"'>
+		AND
+			B_TITLE LIKE '%' || #{keyword} || '%'
+			OR
+			B_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+	
+	<resultMap type="Comments" id="CommentsResultMap">
+		<id property="cmno" column="CM_NO"/>
+		<result property="bno" column="B_NO"/>
+		<result property="cmcontent" column="CM_CONTENT"/>
+		<result property="cmdate" column="CM_DATE"/>
+		<result property="cmwriterid" column="CM_WRITER_ID"/>
+		<result property="cmwriterno" column="CM_WRITER_NO"/>
+		<result property="cmstatus" column="CM_STATUS"/>
+	</resultMap>
+	
+	
+	<!-- 댓글 작성 -->
+	<insert id="commentswrite" parameterType="Comments" useGeneratedKeys="true" keyProperty="cmno" keyColumn="CM_NO">
+		INSERT INTO COMMENTS (
+			CM_NO,
+			B_NO,
+			CM_CONTENT, 
+			CM_DATE,
+			CM_WRITER_ID, 
+			CM_WRITER_NO, 
+			CM_STATUS
+		)
+		VALUES (
+			SEQ_COMMENTS_NO.NEXTVAL,
+			#{bno},
+			#{cmcontent},
+			#{cmdate},
+			#{cmwriterid},
+			#{cmwriterno},
+			DEFAULT
+		)
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<update id="commentsdelete" parameterType="map">
+		UPDATE COMMENTS SET CM_STATUS = #{cmstatus} WHERE CM_NO = #{cmno}
+	</update>
+	
+	<!-- 댓글 수정 -->
+	<update id="commentsupdate" parameterType="map">
+		UPDATE COMMENTS SET CM_CONTENT = #{cmcontent} WHERE CM_NO = #{cmno}
+	</update>
+	
+	<!-- 댓글 시간 -->
+	<update id="updatetime" parameterType="map">
+		UPDATE COMMENTS SET CM_DATE = #{cmdate} WHERE CM_NO = #{cmno}
+	</update>
+	
+	<!-- 댓글 답변여부 -->
+	<update id="answerstatus" parameterType="map">
+		UPDATE BOARD SET B_ANSWER_STATUS = 'Y' WHERE B_NO = #{bno}
+	</update>
+	
+	
+	<!-- 댓글 답변삭제 -->
+	<update id="answerdelete" parameterType="map">
+		UPDATE BOARD SET B_ANSWER_STATUS = 'N' WHERE B_NO = #{bno}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 
+	
+	일반회원용 공지사항 페이지 
+	
+	-->
+	<!-- 공지사항 전체 조회 -->
+	<select id="selectNoticeCount" resultType="_int">
+		SELECT COUNT(*) FROM NOTICE WHERE N_STATUS='Y'
+	</select>
+	
+	<!-- 공지사항 전체 조회 정렬 -->
+	<select id="selectAllNotice" resultMap="NoticeResultMap">
+	<include refid="NoticeListSql"></include>
+		ORDER BY N_TOPTITLE DESC, N_NO DESC
+	</select>
+	
+	<!-- 공지사항 전체 조회 (검색 총 개수) -->
+	<select id="getNoticeSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) FROM NOTICE
+		
+		<if test='searchType == "noticeTitle"'>
+		WHERE 
+			N_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "noticeContent"'>
+		WHERE 
+			N_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "noticeTC"'>
+		WHERE
+			N_TITLE LIKE '%' || #{keyword} || '%'
+			OR
+			N_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+
+	<!-- 공지사항 전체 조회 (리스트) -->
+	<select id="getNoticeSearchList" resultMap="NoticeResultMap" parameterType="String">
+		SELECT * FROM NOTICE
+		<if test='searchType == "noticeTitle"'>
+		WHERE 
+			N_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "noticeContent"'>
+		WHERE
+			N_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "noticeTC"'>
+		WHERE
+			N_TITLE LIKE '%' || #{keyword} || '%'
+			OR
+			N_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+	
+	<!-- 공지사항 상세 조회 -->
+		<select id="selectNoticeByNo" parameterType="_int" resultMap="NoticeResultMap">
+		<include refid="NoticeListSql"></include>
+		AND N.N_NO = #{no}
+	</select>	
+	
+	<!-- 공지사항 조회수 증가 -->
+	<update id="updateNoticeView"  parameterType="Notice">
+		UPDATE NOTICE 
+		SET N_READCOUNT = N_READCOUNT + 1 
+		WHERE N_NO = #{noticeno}
+	</update>
+</mapper>

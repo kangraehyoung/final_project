@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--BootStrap CSS-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+<!--BootStrap JS-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+<!-- Common CSS -->
+<link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+<title>Document</title>
+<link rel="stylesheet" href="../../CSS/Goods/goods_order.css">
+</head>
+<body>
+<!-- 헤더 시작 -->
+<div class="container p-0">
+    <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand mr-1" href="#"><img class="logoimg" src="../../IMG/Common/VODA.png"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav me-auto mt-1">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    CONTENTS
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">MOVIE</a></li>
+                    <li><a class="dropdown-item" href="#">TV</a></li>
+                    <li><a class="dropdown-item" href="#">BOOK</a></li>
+                    <li><a class="dropdown-item" href="#">WEBTOON</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    GOODS
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">ALL GOODS</a></li>
+                    <li><a class="dropdown-item" href="#">POPULAR GOODS</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">RANKING</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    COMMUNITY
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">FREE BOARD</a></li>
+                    <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
+                </ul>
+            </li>
+            </ul>
+        </div>
+
+        <div class="search">
+        <form class="d-flex">
+            <input class="form-control me-sm-2" type="text">
+        </form>
+        </div>
+
+        <div class="right">
+        <a class="text-nowrap" id="login" href="#">로그인</a>
+        <a class="text-nowrap" id="join"href="#">회원가입</a>
+        </div>
+
+    </div>
+    </nav>
+</div>
+<hr class="mt-1 mb-0 line">
+<!-- 헤더 끝 -->
+<div class="container">
+<section class="cart">
+<table class="cart__list">
+        <form>
+            <thead>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td colspan="2">상품정보</td>
+                    <td>옵션</td>
+                    <td>상품금액</td>
+                    <td>배송비</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="cart__list__detail">
+                    <td><input type="checkbox"></td>
+                    <td><img src="https://shop1.daumcdn.net/thumb/R500x500/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FL14957584354.jpg%3Fut%3D20211005180923"></td>
+                    <td><a href="#">카카오 공식 브랜드스토어</a>
+                        <p>카카오프렌즈 라이언 인형 포근포근쿠션 라이언굿즈</p>
+                    </td>
+                    <td class="cart__list__option">
+                        <p>상품 주문 수량: 1개</p>
+                        <button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
+                    </td>
+                    <td><span class="price">116,620원</span><br>
+                        
+                    </td>
+                    <td>무료</td>
+                </tr>
+                <tr class="cart__list__detail">
+                    <td style="width: 2%;"><input type="checkbox"></td>
+                    <td style="width: 13%;">
+                        <img src="https://sitem.ssgcdn.com/15/71/18/item/1000482187115_i1_500.jpg" alt="magic mouse">
+                    </td>
+                    <td style="width: 27%;"><a href="#">신세계몰</a>
+                        <p>짱구는 식기 세트 그릇 굿즈 못말려 머그컵 귀여운 수입 밥그릇 짱구</p>
+                    </td>
+                    <td class="cart__list__option" style="width: 27%;">
+                        <p>상품 주문 수량: 1개</p>
+                        <button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
+                    </td>
+                    <td style="width: 15%;"><span class="price">88,900원</span><br>
+                        
+                    </td>
+                    <td style="width: 15%;">무료</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"><input type="checkbox">&nbsp;&nbsp; <button class="btn btn-primary2 py-1">선택상품 삭제</button>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </form>
+    </table>
+
+    <br><br>
+    <div class="order_info">
+        <div class="order_zone_tit">
+            <h4>주문자 정보</h4>
+        </div>
+        <div class="order_table_type">
+            <table class="table_left">
+                <colgroup>
+                    <col style="width:15%;">
+                    <col style="width:85%;">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th scope="row"><span class="important">주문하시는 분</span></th>
+                    <td><input type="text" name="orderName" id="orderName" value="" data-pattern="gdEngKor" maxlength="20">            
+                </td>
+                </tr>
+                <tr>
+                    <th scope="row"><span class="important">주소</span></th>
+                    <td><input type="text" name="orderAddress" id="orderAddress" value="" data-pattern="gdEngKor" maxlength="300">            
+                </td>
+                </tr>
+                <tr>
+                    <th scope="row">전화번호</th>
+                    <td>
+                        <input type="text" id="phoneNum" name="orderPhone" value="" maxlength="20">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><span class="important">휴대폰 번호</span></th>
+                    <td>
+                        <input type="text" id="mobileNum" name="orderCellPhone" value="" maxlength="20">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><span class="important">이메일</span></th>
+                    <td class="member_email">
+                        <input type="text" name="orderEmail" value="">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- //order_info -->
+    <br><br>
+    <div class="delivery_info">
+        <div class="order_zone_tit">
+            <h4>배송정보</h4>
+        </div>
+
+        <div class="order_table_type shipping_info">
+            <table class="table_left shipping_info_table">
+                <colgroup>
+                    <col style="width:15%;">
+                    <col style="width:85%;">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th scope="row"><span class="important">받으실분</span></th>
+                    <td><input type="text" name="receiverName" data-pattern="gdEngKor" maxlength="20"></td>
+                </tr>
+                <tr>
+                    <th scope="row"><span class="important">받으실 곳</span></th>
+                    <td class="member_address">
+                        <div class="address_postcode">
+                            <input type="text" name="receiverZonecode" readonly="readonly">
+                            <input type="hidden" name="receiverZipcode">
+                            <span id="receiverZipcodeText" class="old_post_code"></span>
+                            <button class="btn btn-search py-1">우편번호검색</button>
+                        </div>
+                        <div class="address_input">
+                            <input type="text" name="receiverAddress" readonly="readonly">
+                            <input type="text" name="receiverAddressSub">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">전화번호</th>
+                    <td>
+                        <input type="text" id="receiverPhone" name="receiverPhone">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><span class="important">휴대폰 번호</span></th>
+                    <td>
+                        <input type="text" id="receiverCellPhone" name="receiverCellPhone">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">남기실 말씀</th>
+                    <td class="td_last_say"><input type="text" name="orderMemo"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- //delivery_info -->
+
+    <!-- //addition_info -->
+    <br><br>
+    <div class="payment_info">
+        <div class="order_zone_tit">
+            <h4>결제정보</h4>
+        </div>
+
+        <div class="order_table_type">
+            <table class="table_left">
+                <colgroup>
+                    <col style="width:15%;">
+                    <col style="width:85%;">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th scope="row">상품 합계 금액</th>
+                    <td>
+                        <strong id="totalGoodsPrice" class="order_payment_sum">1,490,000원</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">배송비</th>
+                    <td>
+                        <span id="totalDeliveryCharge">0</span>원
+                        <span class="multi_shipping_text"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">최종 결제 금액</th>
+                    <td>
+                        <input type="hidden" name="settlePrice" value="1,490,000">
+                        <input type="hidden" name="overseasSettlePrice" value="0">
+                        <input type="hidden" name="overseasSettleCurrency" value="KRW">
+                        <strong id="totalSettlePrice" class="order_payment_sum">1,490,000</strong>원
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- //payment_info -->
+    <br>
+    <div class="payment_progress">
+        <div class="order_zone_tit">
+            <h4>결제수단 선택 / 결제</h4>
+        </div>
+
+        <div class="payment_progress_list">
+            <div class="js_pay_content">
+
+
+                <!-- N : 일반결제 시작 -->
+                <div id="settlekind_general" class="general_payment">
+                    <dl>
+                        <dt>일반결제</dt>
+                        <dd>
+                            <div class="form_element">
+                                <ul class="payment_progress_select">
+                                
+                                    <oi id="settlekindType_pc">
+                                        <input type="radio" id="settleKind_pc" name="settleKind" value="pc">
+                                        <label for="settleKind_pc" class="choice_s">신용카드</label>
+                                    </oi>
+                                    <oi id="settlekindType_pb">
+                                        <input type="radio" id="settleKind_pb" name="settleKind" value="pb">
+                                        <label for="settleKind_pb" class="choice_s">계좌이체</label>
+                                    </oi>
+                                    <oi id="settlekindType_pv">
+                                        <input type="radio" id="settleKind_pv" name="settleKind" value="pv">
+                                        <label for="settleKind_pv" class="choice_s">가상계좌</label>
+                                    </oi>
+                                    <oi id="settlekindType_ph">
+                                        <input type="radio" id="settleKind_ph" name="settleKind" value="ph">
+                                        <label for="settleKind_ph" class="choice_s">휴대폰결제</label>
+                                    </oi>
+                                </ul>
+                            </div>
+
+                            <!-- N : 무통장입금 -->
+                            
+                            <!-- //pay_bankbook_box -->
+                            <!-- 신용카드 컨텐츠 -->
+                            <div class="card" id="settlekind_general_pc" style="display: none;"></div>
+                            <!-- //신용카드 컨텐츠 -->
+                            <!-- 계좌이체 컨텐츠 -->
+                            <div class="account-bank" id="settlekind_general_pb" style="display: none;"></div>
+                            <!-- //계좌이체 컨텐츠 -->
+                            <!-- 가상계좌 컨텐츠 -->
+                            <div class="virtual-bank" id="settlekind_general_pv" style="display: none;"></div>
+                            <!-- //가상계좌 컨텐츠 -->
+                            <!-- 휴대폰 컨텐츠 -->
+                            <div class="cellphone" id="settlekind_general_ph" style="display: none;"></div>
+                            <!-- //휴대폰 컨텐츠 -->
+                        </dd>
+                    </dl>
+                </div>
+                <!-- //general_payment -->
+                <!-- N : 일반결제 끝 -->
+        <!-- //payment_progress_list -->
+        <div class="payment_final">
+            <div class="payment_final_total">
+                <hr>
+                <dl>
+                    <dt>최종 결제 금액</dt>
+                    <dd><span><strong id="totalSettlePriceView">82,000</strong>원</span></dd>
+                </dl>
+                <hr>
+            </div>
+            <div class="payment_final_check">
+                <div class="form_element">
+                    <input type="checkbox" id="termAgree_orderCheck" class="require">
+                    <label for="termAgree_orderCheck" class="check_s"><em><b>(필수)</b> 구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</em></label>
+                </div>
+            </div>
+            <hr>
+            <div class="cart__mainbtns">
+                <button class="btn btn-back py-1">이전페이지</button>
+                <button class="btn btn-primary py-1">결제하기</button>
+            </div>
+        </div>
+    </section>
+</div>
+    <!-- 푸터 -->
+    <footer class="bg-light text-center text-lg-start">
+        <div style="background-color: rgb(235, 236, 240);">
+            <!-- Grid container -->
+            <div class="container p-4" style="background-color: rgb(235, 236, 240);">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Left Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-1 mb-md-0"
+                        style="text-align:center; background-color: rgb(235, 236, 240);">
+                        <h5 class="text-uppercase">Project</h5>
+                        <div style="text-align:center;"><img id="footerlogo" src="../../IMG/Common/VODA.png" class="cul my-3"> <br><br>
+                            <a class="text-dark" href="#">© 2022 Copyright: voda.com</a>
+                        </div>
+                    </div>
+                    <!--Left Grid column-->
+    
+                    <!--Right Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0"
+                        style="text-align:center; background-color: rgb(235, 236, 240);">
+                        <h5 class="text-uppercase">contact us</h5>
+                        <div class="cul my-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                            </svg> &nbsp; 02-123-4567 &nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                            </svg> &nbsp; vodaofficial@gmail.com <br><br>
+                            <p>
+                                <a href="#!">이용안내</a> &nbsp;
+                                <a href="#!">이용약관</a> &nbsp;
+                                <a href="#!">개인정보처리방침</a>
+                            </p>
+                            <div>Business license : 706-20-01181 <br> Mall-order license : 2022-서울시-0334</div>
+                        </div>
+                    </div>
+                    <!--Right Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+    </footer>
+    <!-- 푸터 끝-->
+</body>
+</html>

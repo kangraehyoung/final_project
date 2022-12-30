@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.ranking.model.mapper.RankingMapper">
+
+	<sql id="contentsListSql">
+		C.C_NO,
+		C.C_TITLE,
+		C.C_TYPE,
+		C.C_GENRE,
+		C.C_YEAR,
+		C.C_NATION,
+		C.C_AGE,
+		C.C_INFO,
+		C.C_SYNOP,
+		C.C_OBIMG,
+		C.C_BIMG,
+		C.C_OPIMG,
+		C.C_PIMG,
+		C.C_VIDEO,
+		C.C_DATE,
+		C.C_LEFTCOLOR,
+		C.C_RIGHTCOLOR
+	</sql>
+	
+	<resultMap type="Contents" id="contentsListResultMap">
+		<id property="c_no" column="C_NO"/>
+		<result property="c_title" column="C_TITLE"/>
+		<result property="c_type" column="C_TYPE"/>
+		<result property="c_genre" column="C_GENRE"/>
+		<result property="c_year" column="C_YEAR"/>
+		<result property="c_nation" column="C_NATION"/>
+		<result property="c_age" column="C_AGE"/>
+		<result property="c_info" column="C_INFO"/>
+		<result property="c_synop" column="C_SYNOP"/>
+		<result property="c_obimg" column="C_OBIMG"/>
+		<result property="c_bimg" column="C_BIMG"/>
+		<result property="c_opimg" column="C_OPIMG"/>
+		<result property="c_pimg" column="C_PIMG"/>
+		<result property="c_video" column="C_VIDEO"/>
+		<result property="c_date" column="C_DATE"/>
+		<result property="c_status" column="C_STATUS"/>	
+		<result property="rate_star" column="ROUND(AVG(RATE_STAR),1)"/>
+	</resultMap>
+	
+	<select id="selectTotalRanking" resultMap="contentsListResultMap">
+		SELECT
+		    <include refid="contentsListSql"/>
+		    ,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		LEFT OUTER JOIN RATE R
+		ON C.C_NO = R.C_NO
+		LEFT OUTER JOIN MEMBER M ON (M.M_NO = R.M_NO)
+		WHERE C.C_STATUS = 'Y'
+		AND C.C_TYPE = #{type}
+		GROUP BY 
+			<include refid="contentsListSql"/>
+		ORDER BY  AVG(RATE_STAR) DESC NULLS LAST, C_NO
+	</select>
+	
+	<select id="select1020WRanking" resultMap="contentsListResultMap">
+		SELECT
+		    <include refid="contentsListSql"/>
+		    ,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		LEFT OUTER JOIN RATE R
+		ON C.C_NO = R.C_NO
+		LEFT OUTER JOIN MEMBER M ON (M.M_NO = R.M_NO)
+		WHERE C.C_STATUS = 'Y'
+		AND M.M_BIRTH BETWEEN  '1994-01-01' AND '2013-12-31'
+		AND M.M_GENDER='W'
+		AND C.C_TYPE = #{type}
+		GROUP BY 
+			<include refid="contentsListSql"/>
+		ORDER BY  AVG(RATE_STAR) DESC NULLS LAST, C_NO
+	</select>
+	
+	<select id="select1020MRanking" resultMap="contentsListResultMap">
+		SELECT
+		    <include refid="contentsListSql"/>
+		    ,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		LEFT OUTER JOIN RATE R
+		ON C.C_NO = R.C_NO
+		LEFT OUTER JOIN MEMBER M ON (M.M_NO = R.M_NO)
+		WHERE C.C_STATUS = 'Y'
+		AND M.M_BIRTH BETWEEN  '1994-01-01' AND '2013-12-31'
+		AND M.M_GENDER='M'
+		AND C.C_TYPE = #{type}
+		GROUP BY 
+			<include refid="contentsListSql"/>
+		ORDER BY  AVG(RATE_STAR) DESC NULLS LAST, C_NO
+	</select>
+	
+	<select id="select3040WRanking" resultMap="contentsListResultMap">
+		SELECT
+		    <include refid="contentsListSql"/>
+		    ,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		LEFT OUTER JOIN RATE R
+		ON C.C_NO = R.C_NO
+		LEFT OUTER JOIN MEMBER M ON (M.M_NO = R.M_NO)
+		WHERE C.C_STATUS = 'Y'
+		AND M.M_BIRTH BETWEEN  '1974-01-01' AND '1993-12-31'
+		AND M.M_GENDER='W'
+		AND C.C_TYPE = #{type}
+		GROUP BY 
+			<include refid="contentsListSql"/>
+		ORDER BY  AVG(RATE_STAR) DESC NULLS LAST, C_NO
+	</select>
+	
+	<select id="select3040MRanking" resultMap="contentsListResultMap">
+		SELECT
+		    <include refid="contentsListSql"/>
+		    ,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		LEFT OUTER JOIN RATE R
+		ON C.C_NO = R.C_NO
+		LEFT OUTER JOIN MEMBER M ON (M.M_NO = R.M_NO)
+		WHERE C.C_STATUS = 'Y'
+		AND M.M_BIRTH BETWEEN  '1974-01-01' AND '1993-12-31'
+		AND M.M_GENDER='M'
+		AND C.C_TYPE = #{type}
+		GROUP BY 
+			<include refid="contentsListSql"/>
+		ORDER BY  AVG(RATE_STAR) DESC NULLS LAST, C_NO
+	</select>
+	
+	<select id="select50WRanking" resultMap="contentsListResultMap">
+		SELECT
+		    <include refid="contentsListSql"/>
+		    ,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		LEFT OUTER JOIN RATE R
+		ON C.C_NO = R.C_NO
+		LEFT OUTER JOIN MEMBER M ON (M.M_NO = R.M_NO)
+		WHERE C.C_STATUS = 'Y'
+		AND M.M_BIRTH BETWEEN  '1900-01-01' AND '1973-12-31'
+		AND M.M_GENDER='W'
+		AND C.C_TYPE = #{type}
+		GROUP BY 
+			<include refid="contentsListSql"/>
+		ORDER BY  AVG(RATE_STAR) DESC NULLS LAST, C_NO
+	</select>
+
+	<select id="select50MRanking" resultMap="contentsListResultMap">
+		SELECT
+		    <include refid="contentsListSql"/>
+		    ,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		LEFT OUTER JOIN RATE R
+		ON C.C_NO = R.C_NO
+		LEFT OUTER JOIN MEMBER M ON (M.M_NO = R.M_NO)
+		WHERE C.C_STATUS = 'Y'
+		AND M.M_BIRTH BETWEEN  '1900-01-01' AND '1973-12-31'
+		AND M.M_GENDER='M'
+		AND C.C_TYPE = #{type}
+		GROUP BY 
+			<include refid="contentsListSql"/>
+		ORDER BY  AVG(RATE_STAR) DESC NULLS LAST, C_NO
+	</select>
+</mapper>
+	
+	

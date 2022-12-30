@@ -1,0 +1,203 @@
+/* 코멘트 박스  */
+.commentbox {
+    width: 285px;
+    height: 300px;
+    border-radius: 2.5%;
+    position: relative;
+    padding: 20px;
+    background-color: rgb(233, 236, 246);
+}
+
+.innercommentbox {
+    width: 275px;
+    height: 300px;
+    border-radius: 2.5%;
+    position: relative;
+    padding: 20px;
+    margin-top: 30px;
+    margin-right: 10px;
+    background-color: rgb(233, 236, 246);
+}
+
+.innercommentbox-right{
+    width: 205px;
+    height: 300px;
+    border-radius: 2.5%;
+    position: relative;
+    padding: 20px;
+    margin-top: 30px;
+    margin-right: 0px;
+    background-color: rgb(233, 236, 246);
+}
+
+.userimg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: aliceblue;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    margin-right: 10px;
+}
+
+.userimg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nickname {
+    position: absolute;
+    font-weight: 500;
+    top: 18px;
+    left: 90px;
+}
+
+.commentstar {
+    background-color: white;
+    width: 60px;
+    height: 25px;
+    position: absolute;
+    top: 18px;
+    left: 197px;
+    color: gray;
+    text-align: center;
+    border-radius: 50px;
+}
+
+.commentstar text {
+    background-color: white;
+    position: absolute;
+    top: 18px;
+    left: 205px;
+    color: gray;
+}
+
+.commentinner {
+    position: absolute;
+    top: 75px;
+    height: 150px;
+    width: 230px;
+}
+
+.likecount {
+    position: absolute;
+    top: 260px;
+    left: 60px;
+}
+
+.update {
+    position: absolute;
+    top: 260px; 
+    left: 195px;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: gray;
+}
+
+.delete {
+    position: absolute;
+    top: 260px;
+    left: 235px;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: gray;
+}
+
+/* 좋아요 버튼 */
+.like-button {
+    position: absolute;
+    top: 260px;
+    left: 25px;
+}
+
+.like-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+.like-button.animated {
+    -webkit-animation: pop 0.9s both;
+    animation: pop 0.9s both;
+}
+.like-button svg {
+    opacity: 1;
+}
+.like-button svg path {
+    fill: rgba(73,95,233,0.5);
+    transition: fill .4s ease-out;
+}
+.like-button.active svg path {   
+    fill: rgb(73,95,233);
+}
+
+.col {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+@-webkit-keyframes pop {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+        transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+        transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+        transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+        transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pop {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+        transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+        transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+        transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+        transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }    
+} 

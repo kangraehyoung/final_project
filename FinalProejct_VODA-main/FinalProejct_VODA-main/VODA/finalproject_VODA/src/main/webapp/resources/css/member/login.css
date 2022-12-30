@@ -1,0 +1,662 @@
+@charset "UTF-8";
+
+/* 기존 폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
+
+/* 폰트 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+* { font-family: Pretendard, 
+    -apple-system, BlinkMacSystemFont, 
+    system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    /* box-sizing: border-box; */
+    /* font-family: 'Poppins', sans-serif */
+}
+
+/* body {
+    height: 100vh;
+    background: white;
+} */
+
+.row {
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+}
+
+/* .container {
+    margin: 50px auto
+} */
+
+.panel-heading {
+    text-align: center;
+    margin-bottom: 10px
+}
+
+#forgot {
+    min-width: 100px;
+    margin-left: 130px;
+    text-decoration: none;
+    text-align: center;
+    
+}
+
+a:hover {
+    text-decoration: none
+}
+
+.form-inline label {
+    padding-left: 0px;
+    margin: 0;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn.btn-primary {
+    margin-top: 20px;
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+    display: block;
+    margin-left: 60px;
+
+
+}
+
+/* .panel {
+    min-height: 380px;
+    box-shadow: 20px 20px 80px rgb(239, 215, 215);
+    border-radius: 12px
+} */
+
+.input-field {
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    color: #495FE9
+}
+
+/* input[type='text'],
+input[type='password'] { */
+    #userId, #userPwd {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%
+}
+
+.fa-eye-slash.btn {
+    border: none;
+    outline: none;
+    box-shadow: none
+}
+
+/* 카카오 간편 로그인*/
+#kakao {
+    width: 300px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+}
+
+/* img {
+    width: 222px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative
+} */
+
+a[target='_blank'] {
+    position: relative;
+    transition: all 0.1s ease-in-out
+}
+
+.bordert {
+    border-top: 1px solid #aaa;
+    position: relative;
+    text-align: center;
+}
+
+.bordert:after {
+    /* content: "or connect with"; */
+    color:  #858282;
+    content: "다른 서비스 계정으로 로그인";
+    font-size: 15px;
+    font-weight: normal;
+    position: absolute;
+    top: -13px;
+    left: 30%;
+    background-color: #fff;
+    padding: 0px 8px
+}
+
+.login-box-hd {
+
+    font-family: NotoSans,sans-serif;
+    word-break: break-all;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: #858282;
+    margin-bottom: 0px;
+}
+
+.panel {
+    width: 450px;
+
+}
+
+
+.form-inline {
+    display: inline-block !important;
+    width: 110px;
+    height: 5px;
+
+}
+
+.form-inline label {
+    display: inline-block !important;
+}
+
+.mt-3, .my-3 {
+    margin-top: 30px!important;
+    margin-bottom: 20px;
+}
+
+/* 아이디 찾기, 비밀번호 찾기, 회원가입 설정 */
+ul.join-find {
+    margin: 20px auto 30px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 0px;
+
+}
+
+ul.join-find li {
+    display: inline-block;
+    position: relative;
+    padding: 3px;
+
+
+}
+
+ul.join-find li a {
+    display: block;
+    padding: 10px 5px;
+    font-size: 14px;
+    color: #8a8989;
+    
+}
+
+ul.join-find li:after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    content: "";
+    transform: translateY(-50%);
+    width: 1px;
+    height: 16px;
+    background-color: #a5a5a5;
+
+}
+
+/*회원가입*/
+.css-pculus e1ovi4141 {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+    --swiper-theme-color: #007aff;
+    user-select: none;
+    font-size: 14px;
+    color: #333;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    min-width: 1050px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    background-color: rgb(255, 255, 255);
+
+}
+
+.css-o5dw7d e1ovi4140 {
+    -webkit-text-size-adjust: 100%;
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+    --swiper-theme-color: #007aff;
+    user-select: none;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    margin-bottom: 50px;
+    font-size: 28px;
+    line-height: 35px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -1px;
+    color: rgb(51, 51, 51);
+}
+
+.css-mhmtvt e15so55l1 {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+    --swiper-theme-color: #007aff;
+    user-select: none;
+    font-size: 14px;
+    color: #333;
+    padding: 0;
+    box-sizing: border-box;
+    width: 640px;
+    margin: 0px auto;
+}
+
+
+/*아이디 찾기*/
+
+.member_tit {
+	padding-top: 80px;
+    padding-bottom: 30px;
+    font-weight: 500;
+    font-size: 28px;
+    text-align: center;
+    
+    }
+
+.container {
+    min-width: 1050px;
+    padding: 0px 0px;
+    background-color: white;
+}
+
+.find_id_wrap {
+    max-width: 400px;
+    padding: 0px 10px 6px;
+    margin: auto;
+    position: relative;
+    background-color: white;
+}
+
+@media (min-width: 1050px) {
+    .find_id_choose {
+        margin: 0px 20px;
+    }
+}
+
+.find_id_choose {
+    background-color: white;
+    padding: 0 15px 0 15px;
+    margin: 0;
+    /* box-shadow: inset 0 -0.5px 0 0 #ddd; */
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    text-align: center;
+}
+
+.find_id_phone {
+    display: block;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    position: relative;
+    height: 48px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #5f0080;
+    line-height: 18px;
+    box-shadow: inset 0px -2px 0px 0px #007bff;
+    overflow: visible;
+    background-color: transparent;
+    border: none;
+
+}
+
+.find_id_email {
+    display: block;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    position: relative;
+    height: 30px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    box-shadow: inset 0px -2px 0px 0px #007bff;
+    overflow: visible;
+    background-color: transparent;
+    border: none;
+} 
+
+.find_id_form {
+    padding: 24px 20px;
+}
+
+.find_id_name1 {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.find_id_name2 {
+    padding-bottom: 12px;
+}
+
+.find_id_name3 {
+    display: inline-block;
+    padding: 8px 0 11px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    color: #333;
+}
+
+.find_id_name4 {
+    position: relative;
+    height: 48px;
+}
+
+.find_id_name5 {
+    width: 100%;
+    height: 46px;
+    padding: 0 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.find_id_email1:not(:first-of-type) {
+    margin-top: 8px;
+}
+
+.find_id_email2 {
+    padding-bottom: 12px;
+}
+
+.find_id_email3 {
+    display: inline-block;
+    padding: 8px 0 11px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 19px;
+    color: #333;
+}
+
+.find_id_email4 {
+    position: relative;
+    height: 46px;
+}
+
+.find_id_email5 {
+    width: 100%;
+    height: 46px;
+    padding: 0 11px 1px 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 44px;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.verification_code1{
+    margin-top: 18px;
+}
+
+.verification_code2:disabled{
+    background-color: #ddd;
+}
+
+button[disabled], input[disabled] {
+    cursor: default;
+}
+
+.verification_code2 {
+    display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 52px;
+    border-radius: 4px;
+    color: #fff;
+    border: 0 none;
+    cursor: Default;
+    background-color: #ddd;
+}
+
+.verification_code3 {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    
+}
+
+.find_id_phone:checked:nth-child(1),
+.find_id_email:checked:nth-child(2) {
+    box-shadow: none;
+}
+
+    /*이메일 인증*/
+    .css_email1 {
+        min-width: 1050px;
+        padding: 50px 0;
+        background-color: white;
+    }
+
+    .css_email2 {
+        max-width: 400px;
+        padding: 60px 30px;
+        margin: auto;
+        position: relative;
+        background-color: white;
+    }
+
+    .css_email3 {
+        text-align: center;
+    }
+
+    .css_email4 {
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    /* .css_email4::before {
+        content: "";
+        display: block;
+        width: 54px;
+        height: 54px;
+        margin: 0px auto 20px;
+        background-image: url(../../IMG/Login/email.png);
+    } */
+
+    #email_img {
+        width: 138px;
+        display: block;
+        width: 60px;
+        margin: 0px auto 20px;
+    }
+
+    .css_email5 {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .css_email6 {
+        padding-top: 12px;
+        font-size: 16px;
+        color: rgb(153, 153, 153);
+        line-height: 19px;
+    }
+    
+    /*비밀번호 재설정*/
+    #requiredPassword {
+        font-size: 13px;
+        color: rgb(102, 102, 102);
+        line-height: 18px;
+        letter-spacing: -0.3px;
+        margin-bottom: 2px;
+    }
+
+    #requiredPassword::before {
+        content: "✓";
+        display: inline-block;
+        padding: 0px 4px 0px 2px;
+        font-size: 12px;
+        vertical-align: 0px;
+}
+
+/*아이디 찾기 확인*/
+.find_account1 {
+    min-width: 1050px;
+    padding: 50px 0px;
+    background-color: white;
+}
+
+.find_account2 {
+    max-width: 400px;
+    padding: 0px 30px 30px;
+    margin: auto;
+    position: relative;
+    background-color: white;
+}
+
+.find_account3 {
+    padding-top: 30px;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+}
+
+.find_account4 {
+    display: block;
+    padding-top: 4px;
+    font-weight: 400;
+    font-size: 13px;
+    color: rgb(153, 153, 153);
+    line-height: 18px;
+}
+
+.find_account5 {
+    padding: 12px 0px;
+}
+
+.find_account6 {
+    display: flex;
+}
+
+.find_account6:first-of-type > div {
+    border: none;
+}
+
+
+.find_account7 {
+    width: 60px;
+    display: block;
+    margin: 17px 12px 16px 0px;
+}
+
+.find_account8 {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    /* border-top: 1px solid rgb(238, 238, 238); */
+}
+
+.find_account9 {
+    padding-top: 18px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.find_account10 {
+    display: block;
+    padding-top: 4px;
+    font-size: 16px;
+    color: rgb(153, 153, 153);
+}
+
+.find_account11 {
+    margin-top: 60px;
+}
+
+.find_account12 {
+    display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 56px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #495FE9;
+    border: 0 none;
+}
+
+.find_account13 {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+.btn-logoc {
+      color: #fff;
+      border-color: #495FE9;
+      background-color: #495FE9;
+  }
+
+  .btn-logoc:hover {
+      background-color: #0b27db !important;
+      border-color: #0b27db;
+      color: #fff !important;
+  }
+
+  .btn-logoc {
+    margin-top: 45px;
+    border-radius: 3px;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    display: block;
+    margin-left: 60px;
+
+
+}
+
+    .check_font, .mismatch-message {
+        font-size: 14px;
+    }

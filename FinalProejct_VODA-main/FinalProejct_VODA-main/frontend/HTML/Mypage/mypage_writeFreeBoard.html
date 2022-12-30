@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--BootStrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <!--BootStrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    
+    <!-- mainstyle CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+
+    <!-- my CSS -->
+    <link rel="stylesheet" href="../../CSS/Mypage/mypage_main.css">
+
+    <!-- join CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Login/join.css">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 헤더 시작 -->
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand mr-1" href="#"><img src="../../IMG/Common/VODA.png" width="200px"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav me-auto mt-1">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            CONTENTS
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">MOVIE</a></li>
+                                <li><a class="dropdown-item" href="#">TV</a></li>
+                                <li><a class="dropdown-item" href="#">BOOK</a></li>
+                                <li><a class="dropdown-item" href="#">WEBTOON</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">GOODS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">RANKING</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            BOARD
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">FREE BOARD</a></li>
+                                <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+  
+                <div class="sc">
+                    <form class="d-flex">
+                        <input class="form-control me-sm-2" type="text">
+                    </form>
+                </div>
+  
+                <div class="right">
+                    <a class="text-nowrap" id="login" href="#">로그인</a>
+                    <a class="text-nowrap" id="join"href="#">회원가입</a>
+                </div>
+            </div>
+
+        </nav>
+    </div>
+    <hr class="mt-1 mb-0 line">
+    <!-- 헤더 끝 -->
+
+    <div class="container">
+        <div class="row">
+            <!-- 왼쪽 사이드메뉴 -->
+            <div class="col-sm-2">
+                <div class="mySideMenu">
+                    <h5 style="font-weight: 600;" >마이 페이지</h5>
+                    <hr>
+                    <nav id="sidebarMenu" class="d-md-block sidebar collapse">
+                        <div>
+                            <ul class="nav flex-column">
+
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse" href="#pay_collapse" role="button" aria-expanded="false" aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">구매 정보</p>
+                                    </a>
+                                </li>
+                            
+                                <div class="collapse show multi-collapse" id="pay_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 주문 / 배송 조회</li></a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 취소 / 환불 내역</li></a>
+                                </div>
+                            
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse" href="#member_collapse" role="button" aria-expanded="false" aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">회원 정보</p>
+                                    </a>
+                                </li>
+
+                                <div class="collapse show multi-collapse" id="member_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 회원 정보 조회 / 변경</li></a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 회원 탈퇴</li></a>
+                                </div>
+
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse" href="#contents_collapse" role="button" aria-expanded="false" aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">나의 컨텐츠</p>
+                                    </a>
+                                </li>
+
+                                <div class="collapse show multi-collapse" id="contents_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 찜한 컨텐츠</li></a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 리뷰한 컨텐츠</li></a>
+                                </div>
+
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse" href="#board_collapse" role="button" aria-expanded="false" aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">내가 쓴 글</p>
+                                    </a>
+                                </li>
+
+                                <div class="collapse show multi-collapse" id="board_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 자유게시글 조회</li></a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 문의사항 조회</li></a>
+                                </div>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- 오른쪽 컨텐츠 -->
+            <div class="col-sm-10">
+                <!-- 컨테이너 -->
+                <div class="container">
+      
+                    <!-- 첫번째 행 -->
+                    <div class="row">
+                        <div class="col-sm-12" style="margin-top: 40px;">
+                            <form style="margin-bottom: 3px;">
+                                <h5 style="font-weight: 600;" >자유게시글 조회</h5>
+                                <hr>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <!-- 두번째 행 -->
+                    
+                    <div class="">
+                        <table class="table table-hover boardtable">
+                            <thead>
+                                <tr style="text-align: center">
+                                    <th id="th" style="width: 5%;">No.</th>
+                                    <th id="th" style="width: 55%;">Subject</th>
+                                    <th id="th" style="width: 15%;">Poster</th>
+                                    <th id="th" style="width: 15%;">Date</th>
+                                    <th id="th" style="width: 10%;">Hit</th>
+                                </tr>
+                            </thead>
+            
+                            <tbody>
+                                <tr style="text-align: center">
+                                    <td id="td">1</td>
+                                    <td id="td">제목1</td>
+                                    <td id="td">작성자1</td>
+                                    <td id="td">날짜1</td>
+                                    <td id="td">조회수1</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">2</td>
+                                    <td id="td">제목2</td>
+                                    <td id="td">작성자2</td>
+                                    <td id="td">날짜2</td>
+                                    <td id="td">조회수2</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">3</td>
+                                    <td id="td">제목3</td>
+                                    <td id="td">작성자3</td>
+                                    <td id="td">날짜3</td>
+                                    <td id="td">조회수3</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">4</td>
+                                    <td id="td">제목4</td>
+                                    <td id="td">작성자4</td>
+                                    <td id="td">날짜4</td>
+                                    <td id="td">조회수4</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">5</td>
+                                    <td id="td">제목5</td>
+                                    <td id="td">작성자5</td>
+                                    <td id="td">날짜5</td>
+                                    <td id="td">조회수5</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">6</td>
+                                    <td id="td">제목6</td>
+                                    <td id="td">작성자6</td>
+                                    <td id="td">날짜6</td>
+                                    <td id="td">조회수6</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">7</td>
+                                    <td id="td">제목7</td>
+                                    <td id="td">작성자7</td>
+                                    <td id="td">날짜7</td>
+                                    <td id="td">조회수7</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">8</td>
+                                    <td id="td">제목8</td>
+                                    <td id="td">작성자8</td>
+                                    <td id="td">날짜8</td>
+                                    <td id="td">조회수8</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">9</td>
+                                    <td id="td">제목9</td>
+                                    <td id="td">작성자9</td>
+                                    <td id="td">날짜9</td>
+                                    <td id="td">조회수9</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">10</td>
+                                    <td id="td">제목10</td>
+                                    <td id="td">작성자10</td>
+                                    <td id="td">날짜10</td>
+                                    <td id="td">조회수10</td>
+                                </tr>
+            
+                            </tbody>
+            
+                        </table>
+                    </div>
+                        
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <ul class="pagination justify-content-center">
+                            <li class="page-item disabled" >
+                                <a class="page-link" href="#" >&laquo;</a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#" style="background-color: #495FE9;">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" style="color: #777777;" >2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" style="color: #777777;" >3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" style="color: #777777;" >4</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" style="color: #777777;" >5</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" style="color: #777777;" >&raquo;</a>
+                            </li>
+                            </ul>
+                        </div>
+            
+                        <div class="col-4 text-right">
+                            <button class="btn btn-light text-nowrap"><img src="../../IMG/Community/edit.png" style="height: 23px;"></button>
+                        </div>
+                    </div>
+                    
+                    <div class="search row mb-5">
+                        <div class="col-xs-2 col-sm-2">
+                            <select name="searchType" class="form-control">
+                                <option value="title" selected>Subject</option>
+                                <option value="title">Poster</option>
+                                <option value="title">Contents</option>
+                                <option value="title">Subject+Contents</option>
+                            </select>
+                        </div>
+            
+                        <div class="col-xs-10 col-sm-10">
+                            <div class="input-group">
+                                <input type="text" name="searchInput" id="searchInput" class="form-control">
+                                <span class="input-group-btn" >
+                                    <button id="searchBtn" class="btn btn-greyC text-nowrap" ><img src="../../IMG/Community/search.png" style="height: 23px;"></button>
+                                </span>
+                            </div>
+            
+                        </div>
+                    </div>
+      
+                </div>
+                <!-- 컨테이너 끝 -->
+            </div>
+            <!-- 오른쪽 그리드 끝 -->
+        </div>
+    </div>
+    <!-- 내용 전체 컨테이너 끝 -->
+
+        <!-- 푸터 -->
+        <footer class="bg-light text-center text-lg-start">
+            <div style="background-color: rgb(235, 236, 240);">
+                <!-- Grid container -->
+                <div class="container p-4" style="background-color: rgb(235, 236, 240);">
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Left Grid column-->
+                        <div class="col-lg-6 col-md-12 mb-1 mb-md-0"
+                            style="text-align:center; background-color: rgb(235, 236, 240);">
+                            <h5 class="text-uppercase">Project</h5>
+                            <div style="text-align:center;"><img id="footerlogo" src="../../IMG/Common/VODA.png" class="cul my-3"> <br><br>
+                                <a class="text-dark" href="#">© 2022 Copyright: voda.com</a>
+                            </div>
+                        </div>
+                        <!--Left Grid column-->
+        
+                        <!--Right Grid column-->
+                        <div class="col-lg-6 col-md-12 mb-4 mb-md-0"
+                            style="text-align:center; background-color: rgb(235, 236, 240);">
+                            <h5 class="text-uppercase">contact us</h5>
+                            <div class="cul my-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                                </svg> &nbsp; 02-123-4567 &nbsp;
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                                </svg> &nbsp; vodaofficial@gmail.com <br><br>
+                                <p>
+                                    <a href="#!">이용안내</a> &nbsp;
+                                    <a href="#!">이용약관</a> &nbsp;
+                                    <a href="#!">개인정보처리방침</a>
+                                </p>
+                                <div>Business license : 706-20-01181 <br> Mall-order license : 2022-서울시-0334</div>
+                            </div>
+                        </div>
+                        <!--Right Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </div>
+                <!-- Grid container -->
+        </footer>
+</body>

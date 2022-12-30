@@ -1,0 +1,32 @@
+button:focus {
+    box-shadow: none !important;
+}
+
+.btn-logoC {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+}
+
+.btn-logoC:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
+}
+
+.btn {
+    transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+}
+
+.btn-greyC {
+    background-color: #f8f9fa;
+    border: #f8f9fa;
+    color: #55585c;
+}
+
+.btn-greyC:hover {
+    background-color: #e6e6e6 !important;
+    border-color: #e6e6e6 !important;
+    color: #55585c !important;
+}

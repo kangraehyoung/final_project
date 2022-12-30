@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--BootStrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <!--BootStrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+    <!-- mainstyle CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+
+    <!-- my CSS -->
+    <link rel="stylesheet" href="../../CSS/Mypage/mypage_main.css">
+
+    <!-- mylist CSS-->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Mypage/mypage_list.css">
+
+    <style>
+        .item {
+            padding-left: 12px;
+        }
+
+        .item_poster {
+            width: 190px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 헤더 시작 -->
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand mr-1" href="#"><img src="../../IMG/Common/VODA.png" width="200px"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
+                    aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav me-auto mt-1">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                CONTENTS
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">MOVIE</a></li>
+                                <li><a class="dropdown-item" href="#">TV</a></li>
+                                <li><a class="dropdown-item" href="#">BOOK</a></li>
+                                <li><a class="dropdown-item" href="#">WEBTOON</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">GOODS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">RANKING</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                BOARD
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">FREE BOARD</a></li>
+                                <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sc">
+                    <form class="d-flex">
+                        <input class="form-control me-sm-2" type="text">
+                    </form>
+                </div>
+
+                <div class="right">
+                    <a class="text-nowrap" id="login" href="#">로그인</a>
+                    <a class="text-nowrap" id="join" href="#">회원가입</a>
+                </div>
+            </div>
+
+        </nav>
+    </div>
+    <hr class="mt-1 mb-0 line">
+    <!-- 헤더 끝 -->
+
+    <div class="container">
+        <div class="row">
+            <!-- 왼쪽 사이드메뉴 -->
+            <div class="col-sm-2">
+                <div class="mySideMenu">
+                    <h5 style="font-weight: 600;">마이 페이지</h5>
+                    <hr>
+                    <nav id="sidebarMenu" class="d-md-block sidebar collapse">
+                        <div>
+                            <ul class="nav flex-column">
+
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse"
+                                        href="#pay_collapse" role="button" aria-expanded="false"
+                                        aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">구매 정보</p>
+                                    </a>
+                                </li>
+
+                                <div class="collapse show multi-collapse" id="pay_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                        <li>
+                                            - 주문 / 배송 조회</li>
+                                    </a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                        <li>
+                                            - 취소 / 환불 내역</li>
+                                    </a>
+                                </div>
+
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse"
+                                        href="#member_collapse" role="button" aria-expanded="false"
+                                        aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">회원 정보</p>
+                                    </a>
+                                </li>
+
+                                <div class="collapse show multi-collapse" id="member_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                        <li>
+                                            - 회원 정보 조회 / 변경</li>
+                                    </a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                        <li>
+                                            - 회원 탈퇴</li>
+                                    </a>
+                                </div>
+
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse"
+                                        href="#contents_collapse" role="button" aria-expanded="false"
+                                        aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">나의 컨텐츠</p>
+                                    </a>
+                                </li>
+
+                                <div class="collapse show multi-collapse" id="contents_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                        <li>
+                                            - 찜한 컨텐츠</li>
+                                    </a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                        <li>
+                                            - 리뷰한 컨텐츠</li>
+                                    </a>
+                                </div>
+
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse"
+                                        href="#board_collapse" role="button" aria-expanded="false"
+                                        aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">내가 쓴 글</p>
+                                    </a>
+                                </li>
+
+                                <div class="collapse show multi-collapse" id="board_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                        <li>
+                                            - 자유게시글 조회</li>
+                                    </a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                        <li>
+                                            - 문의사항 조회</li>
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- 오른쪽 컨텐츠 -->
+            <div class="col-sm-10">
+                <!-- 컨테이너 -->
+                <div class="container">
+
+                    <!-- 첫번째 행 -->
+                    <div class="row">
+                        <div class="col-sm-12" style="margin-top: 40px;">
+                            <form style="margin-bottom: 3px;">
+                                <h5 style="font-weight: 600;">리뷰한 컨텐츠</h5>
+                                <hr>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="pl-3 pr-4 row" style="height: 40px; margin-top: 10px;">
+                        <div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;">
+                            MOVIE
+                        </div>
+                        <div class="col-3 mycategory">
+                            TV
+                        </div>
+                        <div class="col-3 mycategory">
+                            BOOK
+                        </div>
+                        <div class="col-3 mycategory" style="border-right: 1px solid grey;">
+                            WEBTOON
+                        </div>
+                    </div>
+
+
+
+                    <div class="section_ranking">
+                        <div class="box_ranking" data-tiara-layer="list">
+                            <ol class="list_movieranking">
+                                <li class="item">
+                                    <div class="item_poster">
+                                        <div class="thumb_item" style="width: 187px; height: 273px;">
+                                            <div class="poster_movie" style="position: absolute;">
+                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F36f22dea0e0a9e0e626c549ce689558160c46ed4"
+                                                    class="img_thumb" alt="공조2: 인터내셔날">
+                                                <span class="txt_tag">
+                                                    <span class="ico_movie ico_see see15">15세이상관람가</span>
+                                                </span>
+                                            </div>
+                                            <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
+                                                <input type="checkbox" style="width: 17px; height: 17px;">
+                                            </div>
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <strong class="tit_item">
+                                                <a href="/moviedb/main?movieId=147615" class="link_txt"
+                                                    data-tiara-layer="moviename">공조2: 인터내셔날</a>
+                                            </strong>
+                                            <span class="txt_append">
+                                                <span class="info_txt">평점<span class="txt_grade">8.1</span></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <div class="item_poster">
+                                        <div class="thumb_item" style="width: 187px; height: 273px;">
+                                            <div class="poster_movie" style="position: absolute;">
+                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe3c34791317eefee49caec94c87a3b1bb24b0e8d"
+                                                    class="img_thumb" alt="늑대사냥">
+
+                                                <span class="txt_tag">
+                                                    <span class="ico_movie ico_see see19">청소년관람불가</span>
+                                                </span>
+                                            </div>
+                                            <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
+                                                <input type="checkbox" style="width: 17px; height: 17px;">
+                                            </div>
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <strong class="tit_item">
+                                                <a href="/moviedb/main?movieId=155115" class="link_txt"
+                                                    data-tiara-layer="moviename">늑대사냥</a>
+                                            </strong>
+                                            <span class="txt_append">
+                                                <span class="info_txt">평점<span class="txt_grade">9.0</span></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <div class="item_poster">
+                                        <div class="thumb_item" style="width: 187px; height: 273px;">
+                                            <div class="poster_movie" style="position: absolute;">
+                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Ff5c62530ef4f57a469bdb51cc065f2c47503f9d8"
+                                                    class="img_thumb" alt="육사오(6/45)">
+
+                                                <span class="txt_tag">
+                                                    <span class="ico_movie ico_see see12">12세이상관람가</span>
+                                                </span>
+                                            </div>
+                                            <div class="mx-2 my-1" style="position: absolute; z-index: 5;">
+                                                <input type="checkbox" style="width: 17px; height: 17px;">
+                                            </div>
+                                            <div class="poster_info">
+                                                <a href="/moviedb/main?movieId=142869" class="link_story"
+                                                    data-tiara-layer="poster">
+                                                    “45개 번호 중에 6개 맞히면 1등인 육사오라는 종이쪼가리,내가 주웠지 말입니다”우연히 1등 당첨 로또를 주운 말년 병장
+                                                    ‘천우’.심장이 터질듯한 설렘도 잠시, 순간의 실수로 바람을 타고 군사분계선을 넘어간 로또.바사삭 부서진 멘탈을
+                                                    부여잡고…기필코 다시 찾아야 한다!우연히 남쪽에서 넘어온 1등 당첨 로또를 주운 북한 병사 ‘용호’.이거이 남조선 인민의
+                                                    고혈을 쥐어 짜내는 육사오라는 종이쪼가리란 말인가?근데 무려 당첨금이 57억이라고?!당첨금을 눈앞에서 놓칠 위기에 처한
+                                                    ‘천우’와북에선 한낱 종이쪼가리일 뿐일 로또를 당첨금으로 바꿔야 하는 ‘용호’.여기에 예상치 못한 멤버들(?)까지 합류하고
+                                                    57억을 사수하기 위한 3:3팀이 결성되는데…주운 자 VS 또 주운 자아슬아슬 선 넘는 지분 협상이 시작된다!
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <strong class="tit_item">
+                                                <a href="/moviedb/main?movieId=142869" class="link_txt"
+                                                    data-tiara-layer="moviename">육사오(6/45)</a>
+                                            </strong>
+                                            <span class="txt_append">
+                                                <span class="info_txt">평점<span class="txt_grade">8.4</span></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <div class="item_poster">
+                                        <div class="thumb_item" style="width: 187px; height: 273px;">
+                                            <div class="poster_movie" style="position: absolute;">
+                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F4eb261668eb43a125d0adc250a89adb48216c005"
+                                                    class="img_thumb" alt="탑건: 매버릭">
+
+                                                <span class="txt_tag">
+                                                    <span class="ico_movie ico_see see12">12세이상관람가</span>
+                                                </span>
+                                            </div>
+                                            <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
+                                                <input type="checkbox" style="width: 17px; height: 17px;">
+                                            </div>
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <strong class="tit_item">
+                                                <a href="/moviedb/main?movieId=114329" class="link_txt"
+                                                    data-tiara-layer="moviename">탑건: 매버릭</a>
+                                            </strong>
+                                            <span class="txt_append">
+                                                <span class="info_txt">평점<span class="txt_grade">9.4</span></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <br>
+                                <li class="item">
+                                    <div class="item_poster">
+                                        <div class="thumb_item" style="width: 187px; height: 273px;">
+                                            <div class="poster_movie" style="position: absolute;">
+                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F292bb497493d7d227ecbf994742c1ff9f90f10bb"
+                                                    class="img_thumb" alt="인생은 아름다워">
+
+                                                <span class="txt_tag">
+                                                    <span class="ico_movie ico_see see12">12세이상관람가</span>
+                                                </span>
+                                            </div>
+                                            <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
+                                                <input type="checkbox" style="width: 17px; height: 17px;">
+                                            </div>
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <strong class="tit_item">
+                                                <a href="/moviedb/main?movieId=133709" class="link_txt"
+                                                    data-tiara-layer="moviename">인생은 아름다워</a>
+                                            </strong>
+                                            <span class="txt_append">
+                                                <span class="info_txt">평점<span class="txt_grade">8.6</span></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <div class="item_poster">
+                                        <div class="thumb_item" style="width: 187px; height: 273px;">
+                                            <div class="poster_movie" style="position: absolute;">
+                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F3673a8a0c5ff4f5c8c25cc959fd6985b1558662957684"
+                                                    class="img_thumb" alt="알라딘">
+
+                                                <span class="txt_tag">
+                                                    <span class="ico_movie ico_see ">전체관람가</span>
+                                                </span>
+                                            </div>
+                                            <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
+                                                <input type="checkbox" style="width: 17px; height: 17px;">
+                                            </div>
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <strong class="tit_item">
+                                                <a href="/moviedb/main?movieId=115601" class="link_txt"
+                                                    data-tiara-layer="moviename">알라딘</a>
+                                            </strong>
+                                            <span class="txt_append">
+                                                <span class="info_txt">평점<span class="txt_grade">8.4</span></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <div class="item_poster">
+                                        <div class="thumb_item" style="width: 187px; height: 273px;">
+                                            <div class="poster_movie" style="position: absolute;">
+                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F252b6d50e59e82a0d34a50c5d99708f5d8b14134"
+                                                    class="img_thumb" alt="극장판 엄마 까투리: 도시로 간 까투리 가족">
+
+                                                <span class="txt_tag">
+                                                    <span class="ico_movie ico_see ">전체관람가</span>
+                                                </span>
+                                            </div>
+                                            <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
+                                                <input type="checkbox" style="width: 17px; height: 17px;">
+                                            </div>
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <strong class="tit_item">
+                                                <a href="/moviedb/main?movieId=162471" class="link_txt"
+                                                    data-tiara-layer="moviename">극장판 엄마 까투리: 도시로 간 까투리 가족</a>
+                                            </strong>
+                                            <span class="txt_append">
+                                                <span class="info_txt">평점<span class="txt_grade">8.6</span></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <div class="item_poster">
+                                        <div class="thumb_item" style="width: 187px; height: 273px;">
+                                            <div class="poster_movie" style="position: absolute;">
+                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F360edc32c521d7536c31e167cfd3cf5f3fe4bc74"
+                                                    class="img_thumb" alt="인생은 뷰티풀: 비타돌체">
+
+                                                <span class="txt_tag">
+                                                    <span class="ico_movie ico_see ">전체관람가</span>
+                                                </span>
+                                            </div>
+                                            <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
+                                                <input type="checkbox" style="width: 17px; height: 17px;">
+                                            </div>
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <strong class="tit_item">
+                                                <a href="/moviedb/main?movieId=163053" class="link_txt"
+                                                    data-tiara-layer="moviename">인생은 뷰티풀: 비타돌체</a>
+                                            </strong>
+                                            <span class="txt_append">
+                                                <span class="info_txt">평점<span class="txt_grade">9.7</span></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+
+
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">&laquo;</a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#" style="background-color: #495FE9;">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" style="color: #777777;">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" style="color: #777777;">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" style="color: #777777;">4</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" style="color: #777777;">5</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" style="color: #777777;">&raquo;</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-4"></div>
+                    </div>
+
+                    <div class="search row mb-5">
+                        <div class="col-xs-2 col-sm-2">
+                            <select name="searchType" class="form-control">
+                                <option value="title" selected>Subject</option>
+                                <option value="title">Contents</option>
+                                <option value="title">Subject+Contents</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xs-10 col-sm-10">
+                            <div class="input-group">
+                                <input type="text" name="searchInput" id="searchInput" class="form-control">
+                                <span class="input-group-btn">
+                                    <button id="searchBtn" class="btn btn-greyC text-nowrap"><img
+                                            src="../../IMG/Community/search.png" style="height: 23px;"></button>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- 컨테이너 끝 -->
+                </div>
+                <!-- 오른쪽 그리드 끝 -->
+            </div>
+        </div>
+        <!-- 내용 전체 컨테이너 끝 -->
+    </div>
+    <!-- 푸터 -->
+    <footer class="bg-light text-center text-lg-start">
+        <div style="background-color: rgb(235, 236, 240);">
+            <!-- Grid container -->
+            <div class="container p-4" style="background-color: rgb(235, 236, 240);">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Left Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-1 mb-md-0"
+                        style="text-align:center; background-color: rgb(235, 236, 240);">
+                        <h5 class="text-uppercase">Project</h5>
+                        <div style="text-align:center;"><img id="footerlogo" src="../../IMG/Common/VODA.png"
+                                class="cul my-3"> <br><br>
+                            <a class="text-dark" href="#">© 2022 Copyright: voda.com</a>
+                        </div>
+                    </div>
+                    <!--Left Grid column-->
+
+                    <!--Right Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0"
+                        style="text-align:center; background-color: rgb(235, 236, 240);">
+                        <h5 class="text-uppercase">contact us</h5>
+                        <div class="cul my-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                            </svg> &nbsp; 02-123-4567 &nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                            </svg> &nbsp; vodaofficial@gmail.com <br><br>
+                            <p>
+                                <a href="#!">이용안내</a> &nbsp;
+                                <a href="#!">이용약관</a> &nbsp;
+                                <a href="#!">개인정보처리방침</a>
+                            </p>
+                            <div>Business license : 706-20-01181 <br> Mall-order license : 2022-서울시-0334</div>
+                        </div>
+                    </div>
+                    <!--Right Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+    </footer>
+</body>

@@ -1,0 +1,24 @@
+.chart {
+  gap: var(--__chart_gap, 0.5em);
+  display: flex;
+  width: calc(100% - var(--__chart_mn-ie, 2em));
+  min-width: max-content;
+  max-width: var(--__chart_max-wh, 500px);
+  align-items: end;
+}
+
+.bar {
+  height: var(--__bar_ht, 20px);
+  display: flex;
+  width: 100%;
+  background-color: var(--__bar_bd-cr, rgb(73,95,233));
+  min-width: var(--__bar_min-wh, 25px);
+  justify-content: center;
+  border-radius: var(--__bar_br-rs, 3px);
+}
+.bar__name {
+  color: var(--__name_cr, black);
+  transform: translateY(calc(15px + var(--__name_pg-top, 5px)));
+  margin-top: auto;
+  font-size: var(--__name_ft-se, 0.85rem);
+}

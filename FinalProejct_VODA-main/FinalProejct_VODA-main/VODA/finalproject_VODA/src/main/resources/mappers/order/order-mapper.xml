@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.order.model.mapper.OrderMapper">
+	<resultMap type="Order" id="OrderResultMap">
+		<id property="payno" column="PAY_NO"/>
+		<id property="pno" column="P_NO"/>
+		<id property="mno" column="M_NO"/>
+		<result property="odate" column="O_DATE"/>
+		<result property="oqtt" column="O_QTT"/>
+		<result property="oadress" column="O_ADRESS"/>
+		<result property="pname" column="P_NAME"/>
+		<result property="pcategory" column="P_CATEGORY"/>
+		<result property="pmadecompany" column="P_MADECOMPANY"/>
+		<result property="omessage" column="O_MESSAGE"/>
+		<result property="oname" column="O_NAME"/>
+		<result property="ophone" column="O_PHONE"/>
+		<result property="opostnum" column="O_POSTNUM"/>
+		<result property="oadressdetail" column="O_ADRESSDETAIL"/>
+	</resultMap>
+	<resultMap type="Pay" id="PayResultMap">
+		<id property="payno" column="PAY_NO"/>
+		<result property="paymerchant" column="PAY_MERCHANT"/>
+		<result property="paymethod" column="PAY_METHOD"/>
+		<result property="payprice" column="PAY_PRICE"/>
+		<result property="paystatus" column="PAY_STATUS"/>
+		<result property="paydate" column="PAY_DATE"/>
+	</resultMap>
+	
+	<insert id="insertOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="payno" keyColumn="PAY_NO">
+		INSERT INTO ORDERS VALUES(#{mno}, #{pno}, #{payno}, SYSDATE, #{oqtt}, #{oadress}, #{omessage}, #{oname}, #{ophone}, #{opostnum}, #{oadressdetail})
+	</insert>
+	
+	<insert id="insertPay" parameterType="Pay" useGeneratedKeys="true" keyProperty="payno" keyColumn="PAY_NO">
+		INSERT INTO PAY VALUES(SEQ_PAY_NO.NEXTVAL, 'imp63887533', '일반결제', #{payprice}, DEFAULT, DEFAULT)
+	</insert>
+</mapper>

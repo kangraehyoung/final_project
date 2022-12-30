@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>idVerify</title>
+
+    <!--BootStrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <!-- Font CSS -->
+    <!-- <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css	'> -->
+
+    <!-- mainstyle CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+
+    <!-- login CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Login/login.css">
+
+    <!-- Bootswatch  -->
+    <link rel="stylesheet" href="../../CSS/Login/bootstrap.min.css">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> -->
+    <script src="../../JS/Login/find-id.js"></script>
+</head>
+<body>
+        <!-- 헤더 시작 -->
+<div class="container p-0">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand mr-1" href="#"><img src="../../IMG/Common/VODA.png" width="200px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav me-auto mt-1">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        CONTENTS
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">MOVIE</a></li>
+                        <li><a class="dropdown-item" href="#">TV</a></li>
+                        <li><a class="dropdown-item" href="#">BOOK</a></li>
+                        <li><a class="dropdown-item" href="#">WEBTOON</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">GOODS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">RANKING</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        COMMUNITY
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">FREE BOARD</a></li>
+                        <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
+                    </ul>
+                </li>
+                </ul>
+            </div>
+    
+                <div class="search">
+                <form class="d-flex">
+                <input class="form-control me-sm-2" type="text">
+                </form>
+                </div>
+    
+                <div class="right">
+                <a class="text-nowrap" id="login" href="#">로그인</a>
+                <a class="text-nowrap" id="join"href="#">회원가입</a>
+                </div>
+    
+            </div>
+        </nav>
+        </div>
+        <hr class="mt-1 mb-0 line">
+        <!-- 헤더 끝 -->
+
+    <div class="find_account1">
+        <div class="find_account2">
+            <div class="find_account3">
+                고객님의 VODA 계정을 찾았습니다.
+                <div class="find_account4">
+                    아이디 확인 후 로그인해 주세요.
+                </div>
+            </div>
+            <ul class="find_account5">
+                <li class="find_account6">
+                    <img class="find_account7" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxjaXJjbGUgZmlsbD0iI0Y1RjVGNSIgY3g9IjIwIiBjeT0iMjAiIHI9IjIwIi8+CiAgICAgICAgPHBhdGggZD0iTTIwIDE5YzQuNjUzIDAgOC41IDMuNDc2IDguNSA3LjcyIDAgLjQzLS4zNDYuNzgtLjc3My43OEgxMi4yNzNhLjc3Ni43NzYgMCAwIDEtLjc3My0uNzhjMC00LjI4NSAzLjgyNC03LjcyIDguNS03Ljcyem0wLTguNWEzLjQgMy40IDAgMSAxIDAgNi44IDMuNCAzLjQgMCAwIDEgMC02Ljh6IiBzdHJva2U9IiNDQ0MiIGZpbGw9IiNDQ0MiLz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="정보보기">
+                    <div class="find_account8">
+                        <div class="find_account9">예) voda1234 </div>
+                        <div class="find_account10">가입일 2022.09.10</div>
+                    </div>
+                </li>
+            </ul>
+            <div class="find_account11">
+                <button class="find_account12" type="button"
+                onclick="">
+                로그인<!-- <span class="find_account13">로그인</span> -->
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button></button>
+
+
+
+
+<br><br><br><br><br><br>
+
+
+        <!-- 푸터 -->
+    <footer class="bg-light text-center text-lg-start">
+        <div style="background-color: rgb(235, 236, 240);">
+            <!-- Grid container -->
+            <div class="container p-4" style="background-color: rgb(235, 236, 240);">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Left Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-1 mb-md-0"
+                        style="text-align:center; background-color: rgb(235, 236, 240);">
+                        <h5 class="text-uppercase">Project</h5>
+                        <div style="text-align:center;"><img id="footerlogo" src="../../IMG/Common/VODA.png" class="cul my-3"> <br><br>
+                            <a class="text-dark" href="#">© 2022 Copyright: voda.com</a>
+                        </div>
+                    </div>
+                    <!--Left Grid column-->
+    
+                    <!--Right Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0"
+                        style="text-align:center; background-color: rgb(235, 236, 240);">
+                        <h5 class="text-uppercase">contact us</h5>
+                        <div class="cul my-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                            </svg> &nbsp; 02-123-4567 &nbsp;
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                            </svg> &nbsp; vodaofficial@gmail.com <br><br>
+                            <p>
+                                <a href="#!">이용안내</a> &nbsp;
+                                <a href="#!">이용약관</a> &nbsp;
+                                <a href="#!">개인정보처리방침</a>
+                            </p>
+                            <div>Business license : 706-20-01181 <br> Mall-order license : 2022-서울시-0334</div>
+                        </div>
+                    </div>
+                    <!--Right Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+    </footer>
+    <!-- 푸터 끝-->
+
+    
+</body>
+</html>
+

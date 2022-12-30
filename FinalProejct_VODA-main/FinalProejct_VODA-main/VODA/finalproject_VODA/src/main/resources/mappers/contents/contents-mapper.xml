@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.contents.model.mapper.ContentsMapper">
+	<sql id="contentsListSql">
+		C.C_NO,
+		C.C_TITLE,
+		C.C_TYPE,
+		C.C_GENRE,
+		C.C_YEAR,
+		C.C_NATION,
+		C.C_AGE,
+		C.C_INFO,
+		C.C_SYNOP,
+		C.C_OBIMG,
+		C.C_BIMG,
+		C.C_OPIMG,
+		C.C_PIMG,
+		C.C_VIDEO,
+		C.C_DATE,
+		C.C_LEFTCOLOR,
+		C.C_RIGHTCOLOR
+	</sql>
+	
+	<resultMap type="Contents" id="contentsListResultMap">
+		<id property="c_no" column="C_NO"/>
+		<result property="c_title" column="C_TITLE"/>
+		<result property="c_type" column="C_TYPE"/>
+		<result property="c_genre" column="C_GENRE"/>
+		<result property="c_year" column="C_YEAR"/>
+		<result property="c_nation" column="C_NATION"/>
+		<result property="c_age" column="C_AGE"/>
+		<result property="c_info" column="C_INFO"/>
+		<result property="c_synop" column="C_SYNOP"/>
+		<result property="c_obimg" column="C_OBIMG"/>
+		<result property="c_bimg" column="C_BIMG"/>
+		<result property="c_opimg" column="C_OPIMG"/>
+		<result property="c_pimg" column="C_PIMG"/>
+		<result property="c_video" column="C_VIDEO"/>
+		<result property="c_date" column="C_DATE"/>
+		<result property="c_status" column="C_STATUS"/>	
+		<result property="rate_star" column="ROUND(AVG(RATE_STAR),1)"/>
+	</resultMap>
+	
+	<resultMap type="Contents" id="contentsDetailResultMap" extends="contentsListResultMap">
+		<result property="c_leftcolor" column="C_LEFTCOLOR"/>
+		<result property="c_rightcolor" column="C_RIGHTCOLOR"/>	
+		<collection property="rates" javaType="arraylist" resultMap="rateResultMap"/>
+	</resultMap>
+	
+	<resultMap type="Rate" id="rateResultMap">
+		<id property="rate_no" column="RATE_NO"/>
+		<result property="c_no" column="C_NO"/>
+		<result property="m_no" column="M_NO"/>
+		<result property="m_id" column="M_ID"/>
+		<result property="rate_star" column="RATE_STAR"/>
+		<result property="rate_comment" column="RATE_COMMENT"/>
+		<result property="rate_date" column="RATE_DATE"/>
+		<result property="rate_like" column="RATE_LIKE"/>
+	</resultMap>
+	
+	<resultMap type="RateResult" id="contentsRateResultMap">
+		<result property="rate_count" column="RATE_COUNT"/>
+		<result property="_05" column="_05"/>
+		<result property="_1" column="_1"/>
+		<result property="_15" column="_15"/>
+		<result property="_2" column="_2"/>
+		<result property="_25" column="_25"/>
+		<result property="_3" column="_3"/>
+		<result property="_35" column="_35"/>
+		<result property="_4" column="_04"/>
+		<result property="_45" column="_45"/>
+		<result property="_5" column="_5"/>
+		<result property="rate_avg" column="RATE_AVG"/>
+	</resultMap>
+	
+	<resultMap type="ContentsPeople" id="contentsPeopleResultMap">
+		<result property="c_no" column="C_NO"/>
+		<result property="people_no" column="PEOPLE_NO"/>
+		<result property="cp_role" column="CP_ROLE"/>
+		<result property="people_renamed_filename" column="PEOPLE_RENAMED_FILENAME"/>
+		<result property="people_name" column="PEOPLE_NAME"/>
+		<result property="people_job" column="PEOPLE_JOB"/>
+	</resultMap>
+	
+	<resultMap type="Rate" id="contentsRate">
+		<id property="rate_no" column="RATE_NO"/>
+		<result property="c_no" column="C_NO"/>
+		<result property="m_no" column="M_NO"/>
+		<result property="m_id" column="M_ID"/>
+		<result property="rate_star" column="RATE_STAR"/>
+		<result property="rate_comment" column="RATE_COMMENT"/>
+		<result property="rate_date" column="RATE_DATE"/>
+		<result property="rate_like" column="RATE_LIKE"/>
+	</resultMap>
+	
+	<resultMap type="Rate" id="myrateResultMap" extends="contentsRate">
+	</resultMap>
+	
+	<resultMap type="SearchResult" id="searchByKeywordResultMap" extends="contentsListResultMap">
+		<result property="people_no" column="PEOPLE_NO"/>
+		<result property="people_name" column="PEOPLE_NAME"/>
+		<result property="people_original_filename" column="PEOPLE_ORIGINAL_FILENAME"/>
+		<result property="people_renamed_filename" column="PEOPLE_RENAMED_FILENAME"/>
+	</resultMap>
+	
+	<resultMap type="RateLikes" id="findRateLikesResultMap" >
+		<result property="rate_no" column="RATE_NO"/>
+		<result property="rate_confirm" column="COUNT(RATE_NO)"/>
+	</resultMap>
+	
+	<select id="selectContentsCount" resultType="_int">
+		SELECT 
+			COUNT(*) FROM CONTENTS WHERE C_STATUS='Y'
+			AND  C_TYPE = #{type}
+	</select>
+
+	<select id="selectAll" resultMap="contentsListResultMap" parameterType="java.util.Map">
+		SELECT
+			<include refid="contentsListSql"/>
+			,COUNT(R.RATE_NO)
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y'
+	        AND C.C_TYPE = #{type}
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        <if test='sort == "like"'>
+			ORDER BY COUNT(RATE_NO) DESC
+			</if>
+			<if test='sort == "new"'>
+			ORDER BY C.C_DATE DESC
+			</if>
+	</select>
+	
+	 <select id="selectContentsByNo" parameterType="_int" resultMap="contentsDetailResultMap">
+		SELECT <include refid="contentsListSql"/>,
+		      R.RATE_NO,
+		      R.M_NO,
+		      R.RATE_STAR,
+		      R.RATE_COMMENT,
+		      R.RATE_DATE,
+		      R.RATE_LIKE,
+		      M.M_ID
+		      FROM CONTENTS C
+		LEFT OUTER JOIN RATE R
+		      ON C.C_NO = R.C_NO
+		LEFT OUTER JOIN MEMBER M
+              ON M.M_NO = R.M_NO
+		      WHERE C.C_STATUS = 'Y'
+		      AND C.C_NO = #{ no }
+       ORDER BY RATE_LIKE DESC
+	</select>
+	
+	<update id="updateContentsView"  parameterType="Contents">
+		UPDATE CONTENTS 
+		SET C_VIEWCOUNT = C_VIEWCOUNT + 1 
+		WHERE C_NO = #{c_no}
+	</update>
+	
+	
+	<select id="selectContentsRateByNo" parameterType="int" resultMap="contentsRateResultMap">				
+		SELECT
+			COUNT(RATE_STAR) as "RATE_COUNT"
+			,COUNT(CASE WHEN RATE_STAR=0.5 then 1 end ) AS "_05"
+			,COUNT(CASE WHEN RATE_STAR=1 then 1 end ) AS "_1"
+			,COUNT(CASE WHEN RATE_STAR=1.5 then 1 end ) AS "_15" 
+			,COUNT(CASE WHEN RATE_STAR=2 then 1 end ) AS "_2" 
+			,COUNT(CASE WHEN RATE_STAR=2.5 then 1 end ) AS "_25" 
+			,COUNT(CASE WHEN RATE_STAR=3 then 1 end ) AS "_3" 
+			,COUNT(CASE WHEN RATE_STAR=3.5 then 1 end ) AS "_35" 
+			,COUNT(CASE WHEN RATE_STAR=4 then 1 end ) AS "_4"
+			,COUNT(CASE WHEN RATE_STAR=4.5 then 1 end ) AS "_45"
+			,COUNT(CASE WHEN RATE_STAR=5 then 1 end ) AS "_5"
+			,ROUND(AVG(RATE_STAR),1) as "RATE_AVG"
+		FROM RATE
+		WHERE C_NO = #{ no }
+	</select>
+	
+	<select id="selectContentsPeopleByNo" parameterType="int" resultMap="contentsPeopleResultMap">	
+	   SELECT
+		   CP.C_NO,
+	       CP.PEOPLE_NO,
+	       CP.CP_ROLE,
+	       P.PEOPLE_NAME,
+	       P.PEOPLE_JOB,
+	       P.PEOPLE_RENAMED_FILENAME
+       FROM CONTENTSPEOPLE CP
+       JOIN PEOPLE P
+       ON CP.PEOPLE_NO = P.PEOPLE_NO
+       WHERE C_NO = #{ no }
+     </select> 
+     
+	<insert id="insertRate" parameterType="Rate"
+		useGeneratedKeys="true" keyProperty="rate_no" keyColumn="RATE_NO">
+		INSERT INTO RATE ( 
+	        RATE_NO,
+	        C_NO,
+	        M_NO,
+	        RATE_STAR,
+	        RATE_COMMENT,
+	        RATE_DATE,
+	        RATE_LIKE)
+        VALUES
+	        (RATE_SEQ.NEXTVAL,
+	        #{ c_no },
+	        #{ m_no },
+	        #{ rate_star },
+	        #{ rate_comment },
+	        SYSDATE,
+	        0
+        )
+	</insert> 
+	
+	<select id="selectCommentsCount" resultType="_int">
+		SELECT COUNT(*) FROM RATE WHERE C_NO = #{ no }
+	</select>
+	
+	<select id="selectCommentsByNo" parameterType="java.util.Map" resultMap="contentsRate">
+		SELECT 
+			R.RATE_NO,
+			R.C_NO,
+			R.M_NO,
+			M.M_ID,
+			R.RATE_STAR,
+			R.RATE_COMMENT, 
+			R.RATE_DATE,
+			R.RATE_LIKE
+		FROM RATE R 
+        JOIN MEMBER M
+        ON R.M_NO = M.M_NO
+		<if test='sort == "like"'>
+		WHERE C_NO = #{ no }
+		ORDER BY RATE_LIKE DESC
+		</if>
+		<if test='sort == "new"'>
+		WHERE C_NO = #{ no }
+		ORDER BY RATE_DATE DESC
+		</if>	
+	</select>
+	
+	<select id="orderByMyRate" parameterType="java.util.Map" resultMap="contentsRate">
+		SELECT 
+			R.RATE_NO,
+			R.C_NO,
+			R.M_NO,
+			M.M_ID,
+			R.RATE_STAR,
+			R.RATE_COMMENT, 
+			R.RATE_DATE,
+			R.RATE_LIKE
+		FROM RATE R 
+        JOIN MEMBER M
+        ON R.M_NO = M.M_NO
+		WHERE C_NO = #{ c_no }
+		ORDER BY DECODE(M.M_NO, #{ m_no }, 1)
+		,RATE_LIKE DESC
+	</select>
+	
+	<select id="selectSearchByKeyword" parameterType="String" resultMap="searchByKeywordResultMap">
+		SELECT 
+			C.C_NO, 
+			C.C_TITLE,
+			C.C_TYPE,
+			C.C_OBIMG,
+			C.C_BIMG,
+			C.C_OPIMG,
+			C.C_PIMG,
+			C.C_YEAR,
+			C.C_NATION,
+			C.C_SYNOP,
+			P.PEOPLE_NO,
+			P.PEOPLE_NAME,
+			P.PEOPLE_ORIGINAL_FILENAME,
+			P.PEOPLE_RENAMED_FILENAME
+		FROM CONTENTS C
+			LEFT OUTER JOIN CONTENTSPEOPLE CP 
+			ON C.C_NO=CP.C_NO
+			LEFT OUTER JOIN PEOPLE P ON 
+			CP.PEOPLE_NO = P.PEOPLE_NO
+			WHERE C_TITLE LIKE '%' || '${ keyword }' || '%'
+	</select>
+	
+	<select id="selectPeopleSearchByKeyword" parameterType="String" resultMap="searchByKeywordResultMap">
+		SELECT 
+			PEOPLE_NO,
+			PEOPLE_NAME,
+			PEOPLE_ORIGINAL_FILENAME,
+			PEOPLE_RENAMED_FILENAME
+		FROM PEOPLE
+			WHERE PEOPLE_NAME LIKE '%' || '${ keyword }' || '%'
+	</select>
+	
+	<select id="selectMyrate" parameterType="_int" resultMap="myrateResultMap">
+		SELECT 
+			R.RATE_NO,
+			R.C_NO,
+			R.M_NO,
+			M.M_ID,
+			R.RATE_STAR,
+			R.RATE_COMMENT, 
+			R.RATE_DATE,
+			R.RATE_LIKE
+		FROM RATE R 
+        JOIN MEMBER M
+        ON R.M_NO = M.M_NO
+		WHERE R.RATE_NO = #{ rateNo }	
+	</select>
+	
+	<!-- 게시글 수정 테스트 -->
+	<update id="updateRate" parameterType="Rate">
+		UPDATE RATE
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="m_no != null">
+				M_NO = #{m_no},
+			</if>
+			<if test="rate_star != null">
+				RATE_STAR = #{rate_star},
+			</if>
+			<if test="rate_comment != null">
+				RATE_COMMENT = #{rate_comment},
+			</if>
+			<if test="rate_like != null">
+				RATE_LIKE = #{rate_like},
+			</if>
+			RATE_DATE = SYSDATE
+		</trim>		
+		WHERE RATE_NO = #{rate_no}
+	</update>
+	
+	<delete id="deleteRate" parameterType="likes">
+		DELETE FROM RATE
+		WHERE RATE_NO = #{ rateNo }
+	</delete>
+	
+	<select id="findLikes" parameterType="likes" resultType="_int" >
+		SELECT COUNT(*) FROM LIKES WHERE C_NO = #{ cNo } AND M_NO = #{ mNo }
+	</select>
+	
+	<insert id="likeUp" parameterType="map" >
+		INSERT INTO LIKES (C_NO , M_NO)
+		VALUES(${ cNo } , ${ mNo })
+	</insert>
+	
+	<delete id="likeDown" parameterType="map" >
+		DELETE FROM LIKES WHERE C_NO = ${ cNo } AND M_NO = ${ mNo }
+	</delete>
+	
+	<select id="findRateLikes" parameterType="map" resultMap="findRateLikesResultMap" >
+		SELECT RATE_NO,
+			COUNT(RATE_NO) 
+			FROM RATELIKES 
+			WHERE M_NO = #{ m_no } 
+			GROUP BY RATE_NO
+	</select>
+	
+	<select id="likeCheck" parameterType="map" resultType="_int" >
+		SELECT 
+			COUNT(RATE_NO) 
+			FROM RATELIKES 
+			WHERE RATE_NO = #{ rate_no } AND M_NO = #{ m_no }
+	</select>
+	
+	<insert id="insertLike" parameterType="map" 
+		useGeneratedKeys="true" keyProperty="like_no" keyColumn="LIKE_NO">
+		INSERT INTO RATELIKES VALUES(SEQ_LIKE_NO.NEXTVAL, #{ rate_no }, #{ m_no })
+	</insert>
+	
+	<update id="updateLike" parameterType="_int">
+		UPDATE RATE SET RATE_LIKE = RATE_LIKE +1
+        WHERE RATE_NO = #{ rate_no }
+	</update>
+	
+	<delete id="deleteLike" parameterType="map">
+		DELETE FROM RATELIKES WHERE M_NO = #{ m_no } AND RATE_NO = #{ rate_no }
+	</delete>
+	
+	<update id="updateLikeCancel" parameterType="_int">
+		UPDATE RATE SET RATE_LIKE = RATE_LIKE -1
+        WHERE RATE_NO = #{ rate_no }
+	</update>
+	
+	<select id="likeCount" parameterType="_int" resultType="_int">
+		SELECT
+			RATE_LIKE
+			FROM RATE
+			WHERE RATE_NO = #{ rate_no }
+	</select>
+	
+	<sql id="selectPeopleSql">
+		SELECT
+		    P.PEOPLE_NO, 
+		    P.PEOPLE_ORIGINAL_FILENAME, 
+		    P.PEOPLE_RENAMED_FILENAME, 
+		    P.PEOPLE_NAME, 
+		    P.PEOPLE_JOB, 
+		    P.PEOPLE_DEBUT, 
+		    P.PEOPLE_BIRTH, 
+		    P.PEOPLE_AWARD, 
+		    P.PEOPLE_GENDER,
+		    P.PEOPLE_STATUS
+		FROM PEOPLE P
+		WHERE P.PEOPLE_STATUS = 'Y'
+	</sql>	 
+	
+	<resultMap type="People" id="PeopleResultMap">
+		<id property="people_no" column="PEOPLE_NO"/>
+		<result property="people_original_filename" column="PEOPLE_ORIGINAL_FILENAME"/>
+		<result property="people_renamed_filename" column="PEOPLE_RENAMED_FILENAME"/>
+		<result property="people_name" column="PEOPLE_NAME"/>
+		<result property="people_job" column="PEOPLE_JOB"/>
+		<result property="people_debut" column="PEOPLE_DEBUT"/>
+		<result property="people_birth" column="PEOPLE_BIRTH"/>
+		<result property="poeple_award" column="PEOPLE_AWARD"/>
+		<result property="people_gender" column="PEOPLE_GENDER"/>
+		<result property="people_status" column="PEOPLE_STATUS"/>
+	</resultMap>
+	
+	<!-- 인물 페이지 조회 -->
+	<select id="getPeopleCount" resultType="_int">
+		SELECT COUNT(*) FROM PEOPLE WHERE PEOPLE_STATUS='Y'
+	</select>
+	
+	<select id="getPeopleList" resultMap="PeopleResultMap">
+		<include refid="selectPeopleSql" />
+		ORDER BY PEOPLE_NO DESC
+	</select>
+	
+	<!-- 인물 검색 총개수 -->
+	<select id="getPeopleSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) FROM PEOPLE
+		WHERE 
+			PEOPLE_NAME LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 인물 검색 리스트 -->
+	<select id="getPeopleSearchList" resultMap="PeopleResultMap" parameterType="String">
+		SELECT * FROM PEOPLE
+		WHERE 
+			PEOPLE_NAME LIKE '%' || #{keyword} || '%'
+	</select>	
+
+	<insert id="saveContents" parameterType="Contents"
+		useGeneratedKeys="true" keyProperty="c_no" keyColumn="C_NO">
+		INSERT INTO CONTENTS ( 
+	        C_NO,
+	        C_TITLE,
+	        C_TYPE,
+	        C_GENRE,
+	        C_YEAR,
+	        C_NATION,
+	        C_AGE,
+	        C_INFO,
+	        C_SYNOP,
+	        C_OBIMG,
+	        C_BIMG,
+	        C_OPIMG,
+	        C_PIMG,
+	        C_VIDEO,
+	        C_DATE,
+	        C_STATUS,
+	        C_LEFTCOLOR,
+	        C_RIGHTCOLOR )
+        VALUES
+	        ( SEQ_CONTENTS_NO.NEXTVAL,
+	        #{ c_title },
+	        #{ c_type },
+	        #{ c_genre },
+	        #{ c_year },
+	        #{ c_nation },
+	        #{ c_age },
+	        #{ c_info },
+	        #{ c_synop },
+	        #{ c_obimg },
+	        #{ c_bimg },
+	        #{ c_opimg },
+	        #{ c_pimg },
+	        #{ c_video },
+	        SYSDATE,
+	       	'Y',
+	        #{ c_leftcolor },
+	        #{ c_rightcolor } )
+	</insert> 
+	
+	<insert id="saveContentsPeople" parameterType="ContentsPeople" >
+		INSERT INTO CONTENTSPEOPLE (
+		C_NO,
+		PEOPLE_NO,
+		CP_ROLE
+		) VALUES (
+		#{c_no},
+		#{people_no},
+		#{cp_role}		
+		)
+	</insert>
+	
+	<select id="findRate" resultType="_int" parameterType="map">
+		SELECT COUNT(RATE_NO)
+		FROM RATE WHERE C_NO = #{no} AND M_NO = #{m_no}
+	</select>
+	
+	<select id="getBg" parameterType="Contents" resultMap="contentsDetailResultMap">
+		SELECT <include refid="contentsListSql"/> FROM CONTENTS C WHERE C_NO = #{ no }
+	</select>
+		
+</mapper>

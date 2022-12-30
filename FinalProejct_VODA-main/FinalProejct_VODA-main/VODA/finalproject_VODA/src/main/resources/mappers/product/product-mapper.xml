@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.product.model.mapper.ProductMapper">
+	<resultMap type="Product" id="ProductListResultMap">
+		<id property="pno" column="P_NO"/>
+		<result property="pname" column="P_NAME"/>
+		<result property="pprice" column="P_PRICE"/>
+		<result property="pqtt" column="P_QTT"/>
+		<result property="pcontents" column="P_CONTENTS"/>
+		<result property="pview" column="P_VIEW"/>
+		<result property="pdate" column="P_DATE"/>
+		<result property="pstatus" column="P_STATUS"/>
+		<result property="poriginfile" column="P_ORIGINFILE"/>
+		<result property="prenamefile" column="P_RENAMEFILE"/>
+		<result property="pcategory" column="P_CATEGORY"/>
+		<result property="pmadelocal" column="P_MADELOCAL"/>
+		<result property="pmadecompany" column="P_MADECOMPANY"/>
+	</resultMap>
+	
+	<select id="getProductAllCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT
+		WHERE P_STATUS = 'Y'
+	</select>
+	
+	<select id="getProductList" resultMap="ProductListResultMap">
+		SELECT P_NO,
+		       P_NAME,
+		       P_PRICE,
+		       P_STATUS,
+		       P_ORIGINFILE,
+		       P_RENAMEFILE,
+		       P_CATEGORY
+		FROM PRODUCT
+		WHERE P_STATUS = 'Y'
+		ORDER BY P_NO DESC
+	</select>
+	<select id="findProductByNo" parameterType="_int" resultMap="ProductListResultMap">
+		SELECT P_NO,
+		       P_NAME,
+		       P_PRICE,
+		       P_QTT,
+		       P_CONTENTS,
+		       P_DATE,
+		       P_ORIGINFILE,
+		       P_RENAMEFILE,
+		       P_CATEGORY,
+		       P_MADELOCAL,
+		       P_MADECOMPANY,
+		       P_STATUS
+		FROM PRODUCT
+		WHERE P_NO = #{pno} AND P_STATUS = 'Y'
+	</select>
+	
+	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="pno" keyColumn="P_NO">
+		INSERT INTO PRODUCT VALUES 
+							(SEQ_PNO.NEXTVAL, 
+							#{pname}, 
+							#{pprice}, 
+							#{pqtt}, 
+							#{pcontents}, 
+							1, 
+							SYSDATE, 
+							'Y', 
+							#{poriginfile}, 
+							#{prenamefile}, 
+							#{pcategory}, 
+							#{pmadelocal}, 
+							#{pmadecompany})
+	</insert>
+	<delete id="deleteProduct" parameterType="Product">
+		UPDATE PRODUCT SET P_STATUS = 'N'
+		WHERE P_NO = #{pno}
+	</delete>
+	<update id="updateProduct" parameterType="Product">
+		UPDATE PRODUCT SET P_NAME = #{pname},
+	                   P_PRICE = #{pprice},
+	                   P_QTT = #{pqtt},
+	                   P_CONTENTS = #{pcontents},
+	                   P_ORIGINFILE = #{poriginfile},
+	                   P_RENAMEFILE = #{prenamefile},
+	                   P_MADELOCAL = #{pmadelocal},
+	                   P_CATEGORY = #{pcategory},
+	                   P_MADECOMPANY = #{pmadecompany}
+		WHERE P_NO = #{pno}
+	</update>
+	
+	<select id="getProductSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) FROM PRODUCT
+		WHERE P_STATUS = 'Y'
+		<if test='searchtype == "pname"'>
+			AND P_NAME LIKE '%' || #{searchname} || '%'
+		</if>
+		<if test='searchtype == "pcategory"'>
+			AND P_CATEGORY LIKE '%' || #{searchname} || '%'
+		</if>
+		ORDER BY P_NO DESC
+	</select>
+	
+	<select id="getProductSearchList" resultMap="ProductListResultMap" parameterType="String">
+		SELECT * FROM PRODUCT
+		WHERE P_STATUS = 'Y'
+		<if test='searchtype == "pname"'>
+			AND P_NAME LIKE '%' || #{searchname} || '%'
+		</if>
+		<if test='searchtype == "pcategory"'>
+			AND P_CATEGORY LIKE '%' || #{searchname} || '%'
+		</if>
+		ORDER BY P_NO DESC
+	</select>
+	
+
+</mapper>

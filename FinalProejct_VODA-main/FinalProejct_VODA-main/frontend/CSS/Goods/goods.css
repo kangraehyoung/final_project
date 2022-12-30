@@ -1,0 +1,15 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+#content_box {
+    padding-top: 50px ;
+}
+#content_box h3 {
+    margin-left: 46.5%;
+}
+#content_box p {
+    margin-left: 80%;
+    margin-top: 10px;
+}
+#content_box small {
+    font-size: 12px;
+}

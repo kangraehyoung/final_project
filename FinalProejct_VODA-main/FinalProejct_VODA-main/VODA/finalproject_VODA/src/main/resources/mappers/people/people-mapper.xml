@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.people.model.mapper.PeopleMapper">
+
+	<sql id="selectPeoplerSql">
+		SELECT
+		    P.PEOPLE_NO, 
+		    P.PEOPLE_ORIGINAL_FILENAME, 
+		    P.PEOPLE_RENAMED_FILENAME, 
+		    P.PEOPLE_NAME, 
+		    P.PEOPLE_JOB, 
+		    P.PEOPLE_DEBUT, 
+		    P.PEOPLE_BIRTH, 
+		    P.PEOPLE_AWARD, 
+		    P.PEOPLE_GENDER,
+		    P.PEOPLE_STATUS
+		FROM PEOPLE P
+		WHERE P.PEOPLE_STATUS = 'Y'
+	</sql>	 
+	
+	<resultMap type="People" id="PeopleResultMap">
+		<id property="people_no" column="PEOPLE_NO"/>
+		<result property="people_original_filename" column="PEOPLE_ORIGINAL_FILENAME"/>
+		<result property="people_renamed_filename" column="PEOPLE_RENAMED_FILENAME"/>
+		<result property="people_name" column="PEOPLE_NAME"/>
+		<result property="people_job" column="PEOPLE_JOB"/>
+		<result property="people_debut" column="PEOPLE_DEBUT"/>
+		<result property="people_birth" column="PEOPLE_BIRTH"/>
+		<result property="poeple_award" column="PEOPLE_AWARD"/>
+		<result property="people_gender" column="PEOPLE_GENDER"/>
+		<result property="people_status" column="PEOPLE_STATUS"/>
+	</resultMap>
+	
+	<!-- 인물 페이지 조회 -->
+	<select id="selectPeopleCount" resultType="_int">
+		SELECT COUNT(*) FROM PEOPLE WHERE PEOPLE_STATUS='Y'
+	</select>
+	
+	<select id="selectPeopleAll" resultMap="PeopleResultMap">
+		<include refid="selectPeoplerSql" />
+		ORDER BY PEOPLE_NAME ASC 
+	</select>
+	
+	<!-- 인물 페이지 상세 조회 -->
+	<select id="selectPeopleByNo" parameterType="_int" resultMap="PeopleResultMap">
+		<include refid="selectPeoplerSql"></include>
+		AND P.PEOPLE_NO = #{people_no}
+	</select>	
+	
+
+	<!-- 인물 페이지 수정 -->
+	<update id="updatePeople" parameterType="People">
+		UPDATE PEOPLE
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="people_original_filename != null">
+				PEOPLE_ORIGINAL_FILENAME = #{people_original_filename},
+			</if>
+			<if test="people_renamed_filename != null">
+				PEOPLE_RENAMED_FILENAME = #{people_renamed_filename},
+			</if>
+			<if test="people_name != null">
+				PEOPLE_NAME = #{people_name},
+			</if>
+			<if test="people_job != null">
+				PEOPLE_JOB = #{people_job},
+			</if>
+			<if test="people_debut != null">
+				PEOPLE_DEBUT = #{people_debut},
+			</if>
+			<if test="people_birth != null">
+				PEOPLE_BIRTH = #{people_birth},
+			</if>
+			<if test="poeple_award != null">
+				PEOPLE_AWARD = #{poeple_award},
+			</if>
+			<if test="people_gender != null">
+				PEOPLE_GENDER = #{people_gender},
+			</if>
+		</trim> 
+		WHERE PEOPLE_NO = #{people_no}
+	</update>
+	
+	
+	
+	<!-- 인물 삭제 (STATUS = 'N')-->
+	<update id="deletePeople" parameterType="map">
+		UPDATE PEOPLE SET 
+		PEOPLE_STATUS = 'N'
+		WHERE PEOPLE_NO IN
+		<foreach collection="list" item="people_no" open="(" separator="," close=")">
+				#{people_no}
+		</foreach>
+	</update>
+	
+	
+	<!-- 인물 등록 -->
+	<insert id="insertPeople" parameterType="People"
+		useGeneratedKeys="true" keyProperty="people_no" keyColumn="PEOPLE_NO">
+		INSERT INTO People (
+			PEOPLE_NO, 
+		    PEOPLE_ORIGINAL_FILENAME, 
+		    PEOPLE_RENAMED_FILENAME, 
+		    PEOPLE_NAME, 
+		    PEOPLE_JOB, 
+		    PEOPLE_DEBUT, 
+		    PEOPLE_BIRTH, 
+		    PEOPLE_AWARD, 
+		    PEOPLE_GENDER,
+		    PEOPLE_STATUS
+		)
+		VALUES(
+			SEQ_PEOPLE_NO.NEXTVAL,
+			#{people_original_filename},
+			#{people_renamed_filename},
+			#{people_name},
+			#{people_job},
+			#{people_debut},
+			#{people_birth},
+			#{poeple_award},
+			#{people_gender},
+			DEFAULT
+		)
+	</insert>
+	
+	<!-- 인물 검색 총개수 -->
+	<select id="getPeopleSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) FROM PEOPLE
+		<if test='searchType == "name"'>
+		WHERE 
+			PEOPLE_NAME LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "type"'>
+		WHERE
+			PEOPLE_JOB LIKE '%' || #{keyword} || '%'
+		</if>
+		ORDER BY PEOPLE_NAME ASC
+	</select>
+	<!-- 인물 검색 리스트 -->
+	<select id="getPeopleSearchList" resultMap="PeopleResultMap" parameterType="String">
+		SELECT * FROM PEOPLE
+		<if test='searchType == "name"'>
+		WHERE 
+			PEOPLE_NAME LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "type"'>
+		WHERE
+			PEOPLE_JOB LIKE '%' || #{keyword} || '%'
+		</if>
+		ORDER BY PEOPLE_NAME ASC
+	</select>	
+	
+</mapper>
+

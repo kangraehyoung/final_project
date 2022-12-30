@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="/themes/custom/agrippa/js/lib/Chart.min.js"></script>
+
+    <div class="chart-container chart-container--size-2">
+    <canvas id="chartVerticalBar"></canvas>
+    </div>
+
+    <script>
+        window.addEventListener('load', function () {
+  var ctx = document.getElementById('chartVerticalBar').getContext('2d');
+  var chart = new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+      labels: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"],
+      datasets: [{
+        label: "Año 2018",
+        backgroundColor: 'rgba(245,34,34,.5)',
+        borderColor: 'rgba(245,34,34,1)',
+        data: [801, 892, 874, 862, 874, 907, 932, 929, 924, 953, 1031, 987],
+      }]
+    },
+
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: 'Chart type: Vertical bar simple'
+      },
+      tooltips: {
+        mode: 'index',
+        intersect: false,
+      },
+      hover: {
+        mode: 'nearest',
+        intersect: true,
+      },
+      scales: {
+        xAxes: [{
+          display: true,
+          scaleLabel: {
+            display: false,
+            labelString: 'Mois'
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          },
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Eur/1000L'
+          }
+
+        }]
+      }
+    }
+  });
+  var mediaQuery = window.matchMedia('(min-width: 768px)');
+
+  function toggleAspectRatio(mq) {
+    chart.options.maintainAspectRatio = mq.matches;
+    chart.resize();
+  }
+
+  toggleAspectRatio(mediaQuery);
+
+  mediaQuery.addListener(toggleAspectRatio);
+})
+    </script>
+</body>
+</html>

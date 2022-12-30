@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.main.model.mapper.MainMapper">
+	<sql id="contentsListSql">
+		C.C_NO,
+		C.C_TITLE,
+		C.C_TYPE,
+		C.C_GENRE,
+		C.C_YEAR,
+		C.C_NATION,
+		C.C_AGE,
+		C.C_INFO,
+		C.C_SYNOP,
+		C.C_OBIMG,
+		C.C_BIMG,
+		C.C_OPIMG,
+		C.C_PIMG,
+		C.C_VIDEO,
+		C.C_DATE,
+		C.C_LEFTCOLOR,
+		C.C_RIGHTCOLOR
+	</sql>
+	
+	<resultMap type="Contents" id="contentsListResultMap">
+		<id property="c_no" column="C_NO"/>
+		<result property="c_title" column="C_TITLE"/>
+		<result property="c_type" column="C_TYPE"/>
+		<result property="c_genre" column="C_GENRE"/>
+		<result property="c_year" column="C_YEAR"/>
+		<result property="c_nation" column="C_NATION"/>
+		<result property="c_age" column="C_AGE"/>
+		<result property="c_info" column="C_INFO"/>
+		<result property="c_synop" column="C_SYNOP"/>
+		<result property="c_obimg" column="C_OBIMG"/>
+		<result property="c_bimg" column="C_BIMG"/>
+		<result property="c_opimg" column="C_OPIMG"/>
+		<result property="c_pimg" column="C_PIMG"/>
+		<result property="c_video" column="C_VIDEO"/>
+		<result property="c_date" column="C_DATE"/>
+		<result property="c_status" column="C_STATUS"/>	
+		<result property="rate_star" column="ROUND(AVG(RATE_STAR),1)"/>
+	</resultMap>
+	
+	<select id="getContentsRankList" resultMap="contentsListResultMap">
+		SELECT
+			<include refid="contentsListSql"/>
+			,COUNT(RATE_NO)
+			FROM CONTENTS C
+			JOIN RATE R
+			ON C.C_NO = R.C_NO
+			GROUP BY 
+			<include refid="contentsListSql"/>
+			ORDER BY COUNT(RATE_NO) DESC
+	</select>
+	
+</mapper>

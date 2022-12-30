@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.finalproject.voda.member.model.mapper.MemberMapper">
+	
+	<sql id="selectMemberSql">
+		SELECT
+		    M_NO, 
+		    M_ID, 
+		    M_PW, 
+		    M_NAME, 
+		    M_EMAIL, 
+		    M_PHONE, 
+		    M_ADDRESS, 
+		    M_GENDER,
+		    M_BIRTH, 
+		    M_JOINDATE, 
+		    M_AUTHORIZATION,
+		    M_STATUS,
+		    M_JOINWAY,
+		    M_POSTNUM,
+		    M_DETAILADDRESS
+		FROM MEMBER
+	</sql>	
+	
+	
+	<resultMap type="Member" id="memberResultMap">
+		<id property="m_no" column="M_NO" />
+		<result property="m_id" column="M_ID"/>
+		<result property="m_password" column="M_PW"/>
+		<result property="m_name" column="M_NAME"/>
+		<result property="m_email" column="M_EMAIL"/>
+		<result property="m_phone" column="M_PHONE"/>
+		<result property="m_address" column="M_ADDRESS"/>
+		<result property="m_gender" column="M_GENDER"/>
+		<result property="m_birth" column="M_BIRTH"/>
+		<result property="m_joinDate" column="M_JOINDATE"/>
+		<result property="m_authorization" column="M_AUTHORIZATION"/>
+		<result property="m_status" column="M_STATUS"/>
+		<result property="m_joinWay" column="M_JOINWAY"/>	
+		<result property="m_postNum" column="M_POSTNUM"/>
+		<result property="m_detailAddress" column="M_DETAILADDRESS"/>
+			
+	</resultMap>
+	
+	<select id="selectCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+	
+	<select id="selectMemberById" parameterType="string" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE M_ID = #{m_id} AND M_STATUS = 'Y'
+	</select>
+	
+	<select id="selectMemberByEmail" parameterType="string" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE M_EMAIL = #{m_email} AND M_STATUS = 'Y'
+	</select>
+	
+	
+	
+	<insert id="insertMember" parameterType="Member"
+		useGeneratedKeys="true" keyColumn="M_NO" keyProperty="m_no">
+		INSERT INTO MEMBER (
+		    M_NO, 
+		    M_ID, 
+		    M_PW, 
+		    M_NAME, 
+		    M_EMAIL, 
+		    M_PHONE,
+			M_ADDRESS,
+		    M_GENDER,
+		    M_BIRTH,
+		    M_JOINDATE, 
+		    M_AUTHORIZATION,
+		    M_STATUS,
+		    M_JOINWAY,
+		    M_POSTNUM,
+			M_DETAILADDRESS		
+		) VALUES(
+			MEMBER_SEQ.NEXTVAL,
+			#{m_id},
+			#{m_password},
+			#{m_name},
+			#{m_email},
+			#{m_phone},
+			#{m_address},
+			#{m_gender},
+			#{m_birth},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			#{m_postNum},
+			#{m_detailAddress}
+			)	
+	</insert>
+	
+	
+	<select id="findIdCheck" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_EMAIL = #{m_email}
+	</select>
+	
+	<select id="findId" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE M_EMAIL = #{m_email}
+	</select>
+	
+	
+		
+	<select id="findPwd" resultType="Member" parameterType="String">
+		<include refid="selectMemberSql"/>
+		WHERE M_EMAIL = #{m_email}
+	</select>
+	
+	<update id="passwordUpdate" parameterType="Member">
+		UPDATE MEMBER SET M_PW = #{m_password}
+		WHERE M_EMAIL = #{m_email}
+	</update>
+	
+	<insert id="insertMemberKakao" parameterType="Member"
+		useGeneratedKeys="true" keyColumn="M_NO" keyProperty="m_no">
+		INSERT INTO MEMBER (
+		    M_NO, 
+		    M_ID, 
+		    M_PW, 
+		    M_NAME, 
+		    M_EMAIL, 
+		    M_PHONE,
+			M_ADDRESS,
+		    M_GENDER,
+		    M_BIRTH,
+		    M_JOINDATE, 
+		    M_AUTHORIZATION,
+		    M_STATUS,
+		    M_JOINWAY,
+		    M_POSTNUM,
+			M_DETAILADDRESS		
+		) VALUES(
+			MEMBER_SEQ.NEXTVAL,
+			#{m_id},
+			#{m_password},
+			#{m_name},
+			#{m_email},
+			#{m_phone},
+			#{m_address},
+			#{m_gender},
+			#{m_birth},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			'KAKAO',
+			#{m_postNum},
+			#{m_detailAddress}
+			)	
+	</insert>
+	
+	<insert id="insertMemberNaver" parameterType="Member"
+		useGeneratedKeys="true" keyColumn="M_NO" keyProperty="m_no">
+		INSERT INTO MEMBER (
+		    M_NO, 
+		    M_ID, 
+		    M_PW, 
+		    M_NAME, 
+		    M_EMAIL, 
+		    M_PHONE,
+			M_ADDRESS,
+		    M_GENDER,
+		    M_BIRTH,
+		    M_JOINDATE, 
+		    M_AUTHORIZATION,
+		    M_STATUS,
+		    M_JOINWAY,
+		    M_POSTNUM,
+			M_DETAILADDRESS		
+		) VALUES(
+			MEMBER_SEQ.NEXTVAL,
+			#{m_id},
+			#{m_password},
+			#{m_name},
+			#{m_email},
+			#{m_phone},
+			#{m_address},
+			#{m_gender},
+			#{m_birth},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			'NAVER',
+			#{m_postNum},
+			#{m_detailAddress}
+			)	
+	</insert>
+	
+</mapper>
